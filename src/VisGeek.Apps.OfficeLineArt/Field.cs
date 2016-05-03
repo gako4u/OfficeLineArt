@@ -4,6 +4,8 @@ using System.Linq;
 
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>ラインアートを描画するフィールド
+	/// </summary>
 	public abstract class Field {
 		// コンストラクター
 		protected Field(LineArt lineArt, int apexCount, int afterImageCount) {
@@ -40,7 +42,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 			double endTop;
 			this.GetRectanglePosition(out beginLeft, out beginTop, out endLeft, out endTop);
 
-			return new Rectangle(this, beginLeft, beginTop, endLeft, endTop);
+			return new Rectangle(beginLeft, beginTop, endLeft, endTop);
 		}
 
 		protected abstract void GetRectanglePosition(out double beginLeft, out double beginTop, out double endLeft, out double endTop);

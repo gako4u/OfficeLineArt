@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>座標の位置
+	/// </summary>
 	public struct Point {
 		// コンストラクター
 		internal Point(double left, double top) {

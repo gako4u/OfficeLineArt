@@ -4,6 +4,8 @@ using System.Linq;
 using System.Collections;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>多角形を構成する線のコレクション
+	/// </summary>
 	public class LineCollection : IEnumerable<Line> {
 		// コンストラクター
 		internal LineCollection(Polygon polygon, ApexCollection apexes) {

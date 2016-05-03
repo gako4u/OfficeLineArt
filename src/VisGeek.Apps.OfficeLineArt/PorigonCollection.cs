@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>多角形のコレクション
+	/// </summary>
 	public class PoLygonCollection : IEnumerable<Polygon> {
 		// コンストラクター
 		internal PoLygonCollection(Field field, int apexCount, int count, Color color) {

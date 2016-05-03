@@ -6,13 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VisGeek.Apps.OfficeLineArt {
-	public struct PositionElement {
+	/// <summary>多角形の頂点の位置の各次元が持つ情報
+	/// </summary>
+	public struct PositionInfo {
 		// コンストラクター
-		internal PositionElement(Func<double> minValue, Func<double> maxValue, Direction direction, double value)
-			: this(minValue, maxValue, direction, value, PositionElement.GetStepLength(minValue(), maxValue())) {
+		internal PositionInfo(Func<double> minValue, Func<double> maxValue, Direction direction, double value)
+			: this(minValue, maxValue, direction, value, PositionInfo.GetStepLength(minValue(), maxValue())) {
 		}
 
-		private PositionElement(Func<double> minValue, Func<double> maxValue, Direction direction, double value, double stepLength) {
+		private PositionInfo(Func<double> minValue, Func<double> maxValue, Direction direction, double value, double stepLength) {
 			this.MinValue = minValue;
 			this.MaxValue = maxValue;
 			this.Direction = direction;
@@ -46,7 +48,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 			}
 		}
 
-		public PositionElement Step() {
+		public PositionInfo Step() {
 			double newValue = this.Value + (this.StepLength * this.Direction.Sign);
 			var newDirection = this.Direction;
 			double stepLength = this.StepLength;
@@ -64,10 +66,10 @@ namespace VisGeek.Apps.OfficeLineArt {
 					newValue = minValue;
 				}
 				newDirection = !newDirection;
-				stepLength = PositionElement.GetStepLength(minValue, maxValue);
+				stepLength = PositionInfo.GetStepLength(minValue, maxValue);
 			}
 
-			return new PositionElement(this.MinValue, this.MaxValue, newDirection, newValue, stepLength);
+			return new PositionInfo(this.MinValue, this.MaxValue, newDirection, newValue, stepLength);
 		}
 
 		// スタティックコンストラクター

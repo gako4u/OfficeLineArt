@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>ラインアートの抽象クラス
+	/// </summary>
 	public abstract class LineArt {
 		// コンストラクター
 		protected LineArt() {

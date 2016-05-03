@@ -2,18 +2,16 @@
 using System.Diagnostics;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>座標を表す長方形
+	/// </summary>
 	public class Rectangle {
 		// コンストラクター
-		public Rectangle(Field field, double beginLeft, double beginTop, double endLeft, double endTop) {
+		public Rectangle(double beginLeft, double beginTop, double endLeft, double endTop) {
 			this.LeftTop = new Point(beginLeft, beginTop);
 			this.RightBottom = new Point(endLeft, endTop);
-
-			//Debug.WriteLine("Filed Width:{0}", this.Width);
-			//Debug.WriteLine("Filed Height:{0}", this.Height);
 		}
 
 		// フィールド
-		public Field Field { get; }
 
 		// インデクサー
 

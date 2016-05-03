@@ -5,6 +5,8 @@ using System.Collections;
 using System.Diagnostics;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>頂点のコレクション
+	/// </summary>
 	public class ApexCollection : IEnumerable<Apex> {
 		// コンストラクター
 		internal ApexCollection(Polygon polygon, int apexCount) {

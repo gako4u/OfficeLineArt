@@ -1,6 +1,8 @@
 ﻿using System;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>頂点
+	/// </summary>
 	public class Apex {
 		// コンストラクター
 		internal Apex(Polygon polygon) {
@@ -8,7 +10,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 			var field = polygon.Polygons.Field;
 
 			this.Left =
-				new PositionElement(
+				new PositionInfo(
 					() => field.GetRectangle().LeftTop.Left
 					, () => field.GetRectangle().RightBottom.Left
 					, Direction.GetRandom()
@@ -16,7 +18,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 				);
 
 			this.Top =
-				new PositionElement(
+				new PositionInfo(
 					() => field.GetRectangle().LeftTop.Top
 					, () => field.GetRectangle().RightBottom.Top
 					, Direction.GetRandom()
@@ -31,9 +33,9 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// プロパティ
 		public Polygon Polygon { get; }
 
-		public PositionElement Left { get; private set; }
+		public PositionInfo Left { get; private set; }
 
-		public PositionElement Top { get; private set; }
+		public PositionInfo Top { get; private set; }
 
 		// イベントハンドラー
 

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>頂点の進行方向
+	/// </summary>
 	public struct Direction {
 		// コンストラクター
 		private Direction(string displayName, int sign) {

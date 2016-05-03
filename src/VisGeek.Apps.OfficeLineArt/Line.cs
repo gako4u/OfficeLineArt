@@ -5,6 +5,8 @@ using System.Linq;
 using System.Collections;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>多角形を構成する線
+	/// </summary>
 	public abstract class Line {
 		// コンストラクター
 		protected Line(LineCollection lines, Apex begin, Apex end) {

@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Drawing;
 
 namespace VisGeek.Apps.OfficeLineArt {
+	/// <summary>多角形
+	/// </summary>
 	public class Polygon {
 		// コンストラクター
 		internal Polygon(PoLygonCollection polygons, int apexCount, Color color) {
