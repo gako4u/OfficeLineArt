@@ -36,16 +36,16 @@ namespace VisGeek.Apps.OfficeLineArt {
 		protected internal abstract void DelselectAll();
 
 		public Rectangle GetRectangle() {
-			double beginLeft;
-			double beginTop;
-			double endLeft;
-			double endTop;
-			this.GetRectanglePosition(out beginLeft, out beginTop, out endLeft, out endTop);
+			double beginX;
+			double beginY;
+			double endX;
+			double endY;
+			this.GetRectanglePosition(out beginX, out beginY, out endX, out endY);
 
-			return new Rectangle(beginLeft, beginTop, endLeft, endTop);
+			return new Rectangle(beginX, beginY, endX, endY);
 		}
 
-		protected abstract void GetRectanglePosition(out double beginLeft, out double beginTop, out double endLeft, out double endTop);
+		protected abstract void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY);
 
 		// スタティックコンストラクター
 

@@ -9,9 +9,9 @@ namespace VisGeek.Apps.OfficeLineArt {
 	/// </summary>
 	public struct Point {
 		// コンストラクター
-		internal Point(double left, double top) {
-			this.Left = left;
-			this.Top = top;
+		internal Point(double x, double y) {
+			this.X = x;
+			this.Y = y;
 		}
 
 		// フィールド
@@ -19,9 +19,9 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// インデクサー
 
 		// プロパティ
-		public double Left { get; }
+		public double X { get; }
 
-		public double Top { get; }
+		public double Y { get; }
 
 		// イベントハンドラー
 

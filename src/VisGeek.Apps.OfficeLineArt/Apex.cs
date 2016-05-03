@@ -9,18 +9,18 @@ namespace VisGeek.Apps.OfficeLineArt {
 			this.Polygon = polygon;
 			var field = polygon.Polygons.Field;
 
-			this.Left =
+			this.X =
 				new PositionInfo(
-					() => field.GetRectangle().LeftTop.Left
-					, () => field.GetRectangle().RightBottom.Left
+					() => field.GetRectangle().Begin.X
+					, () => field.GetRectangle().End.X
 					, Direction.GetRandom()
 					, 0
 				);
 
-			this.Top =
+			this.Y =
 				new PositionInfo(
-					() => field.GetRectangle().LeftTop.Top
-					, () => field.GetRectangle().RightBottom.Top
+					() => field.GetRectangle().Begin.Y
+					, () => field.GetRectangle().End.Y
 					, Direction.GetRandom()
 					, 0
 				);
@@ -33,25 +33,25 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// プロパティ
 		public Polygon Polygon { get; }
 
-		public PositionInfo Left { get; private set; }
+		public PositionInfo X { get; private set; }
 
-		public PositionInfo Top { get; private set; }
+		public PositionInfo Y { get; private set; }
 
 		// イベントハンドラー
 
 		// メソッド
 		public override string ToString() {
-			return string.Format("Left:{0} Top:{1}", this.Left, this.Top);
+			return string.Format("{0}:{1} {2}:{3}", nameof(this.X), this.X, nameof(this.Y), this.Y);
 		}
 
 		internal void Move() {
-			this.Left = this.Left.Step();
-			this.Top = this.Top.Step();
+			this.X = this.X.Step();
+			this.Y = this.Y.Step();
 		}
 
 		internal void MoveTo(Apex other) {
-			this.Left = other.Left;
-			this.Top = other.Top;
+			this.X = other.X;
+			this.Y = other.Y;
 		}
 
 		// スタティックコンストラクター

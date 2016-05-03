@@ -42,7 +42,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		// メソッド
 		private Excel.Shape createShape() {
 			var shapes = this.Field.Cell.Worksheet.Shapes;
-			var result = shapes.AddLine((float)this.Begin.Left.Value, (float)this.Begin.Top.Value, (float)this.End.Left.Value, (float)this.End.Top.Value);
+			var result = shapes.AddLine((float)this.Begin.X.Value, (float)this.Begin.Y.Value, (float)this.End.X.Value, (float)this.End.Y.Value);
 			result.Line.ForeColor.SetColor(this.Color);
 			return result;
 		}

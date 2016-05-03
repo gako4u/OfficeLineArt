@@ -40,7 +40,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 			this.Apexes.ForEach(apex => apex.Move());
 
 			this.Apexes.Where((apex, index) => index == 0)
-				.ForEach((apex, index) => Debug.WriteLine("Apex:{0} Left:{1} :Top:{2}", index, apex.Left, apex.Top));
+				.ForEach((apex, index) => Debug.WriteLine("{0}:{1} {2}:{3} {4}:{5}", nameof(Apex), index, nameof(apex.X), apex.X, nameof(apex.Y), apex.Y));
 		}
 
 		internal void MoveTo(Polygon other) {

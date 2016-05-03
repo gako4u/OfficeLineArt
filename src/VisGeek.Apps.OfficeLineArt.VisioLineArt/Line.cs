@@ -9,7 +9,7 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class Line : OfficeLineArt.Line {
 		// コンストラクター
 		internal Line(LineCollection lines, Apex begin, Apex end, Field field) : base(lines, begin, end) {
-			this.shape = field.Page.DrawLine(begin.Left.Value, begin.Top.Value, end.Left.Value, end.Top.Value);
+			this.shape = field.Page.DrawLine(begin.X.Value, begin.Y.Value, end.X.Value, end.Y.Value);
 			var cell = this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowLine, VisCellIndices.visLineColor);
 
 			var color = lines.Polygon.Color;
@@ -25,11 +25,11 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 
 		// イベントハンドラー
 		protected override void RefrectFromBegin() {
-			this.shape.SetBegin(this.Begin.Left.Value, this.Begin.Top.Value);
+			this.shape.SetBegin(this.Begin.X.Value, this.Begin.Y.Value);
 		}
 
 		protected override void RefrectFromEnd() {
-			this.shape.SetEnd(this.End.Left.Value, this.End.Top.Value);
+			this.shape.SetEnd(this.End.X.Value, this.End.Y.Value);
 		}
 
 		protected override void BringToFront() {

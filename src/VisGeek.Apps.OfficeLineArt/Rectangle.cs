@@ -6,9 +6,9 @@ namespace VisGeek.Apps.OfficeLineArt {
 	/// </summary>
 	public class Rectangle {
 		// コンストラクター
-		public Rectangle(double beginLeft, double beginTop, double endLeft, double endTop) {
-			this.LeftTop = new Point(beginLeft, beginTop);
-			this.RightBottom = new Point(endLeft, endTop);
+		public Rectangle(double beginX, double beginY, double endX, double endY) {
+			this.Begin = new Point(beginX, beginY);
+			this.End = new Point(endX, endY);
 		}
 
 		// フィールド
@@ -16,9 +16,9 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// インデクサー
 
 		// プロパティ
-		public Point LeftTop { get; }
+		public Point Begin { get; }
 
-		public Point RightBottom { get; }
+		public Point End { get; }
 
 		// イベントハンドラー
 

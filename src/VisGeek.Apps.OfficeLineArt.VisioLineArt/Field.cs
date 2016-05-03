@@ -40,15 +40,15 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 			return new Line(lines, begin, end, this);
 		}
 
-		protected override void GetRectanglePosition(out double beginLeft, out double beginTop, out double endLeft, out double endTop) {
+		protected override void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY) {
 			double width = this.GetSideLength(VisCellIndices.visPageWidth);
 			double height = this.GetSideLength(VisCellIndices.visPageHeight);
 
-			beginLeft = 0;
-			beginTop = 0;
+			beginX = 0;
+			beginY = 0;
 
-			endLeft = beginLeft + width;
-			endTop = beginTop + height;
+			endX = beginX + width;
+			endY = beginY + height;
 		}
 
 		private double GetSideLength(VisCellIndices cellIndex) {

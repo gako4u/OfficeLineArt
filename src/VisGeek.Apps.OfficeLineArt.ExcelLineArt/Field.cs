@@ -58,15 +58,15 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 			return new Line(lines, begin, end);
 		}
 
-		protected override void GetRectanglePosition(out double beginLeft, out double beginTop, out double endLeft, out double endTop) {
+		protected override void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY) {
 			double width = this.Cell.Width;
 			double height = this.Cell.Height;
 
-			beginLeft = this.Cell.Left;
-			beginTop = this.Cell.Top;
+			beginX = this.Cell.Left;
+			beginY = this.Cell.Top;
 
-			endLeft = beginLeft + width;
-			endTop = beginTop + height;
+			endX = beginX + width;
+			endY = beginY + height;
 		}
 
 		// スタティックコンストラクター
