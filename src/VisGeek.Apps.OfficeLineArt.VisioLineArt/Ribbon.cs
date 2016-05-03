@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Visio = Microsoft.Office.Interop.Visio;
+using Office = Microsoft.Office.Interop.Visio;
 
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	public partial class Ribbon {
@@ -13,7 +13,7 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 		private LineArt lineArt;
 
 		// プロパティ
-		public Visio.Application Visio {
+		public Office.Application Application {
 			get {
 				return Globals.ThisAddIn.Application;
 			}
@@ -38,7 +38,7 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 					this.ddAfterImageCount.Items.Add(item);
 				}
 
-				this.lineArt = new LineArt(this.Visio);
+				this.lineArt = new LineArt(this.Application);
 			} catch (Exception ex) {
 				MessageBox.Show(ex.Message);
 				MessageBox.Show(ex.StackTrace);

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
+using Office = Microsoft.Office.Interop.Excel;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	public partial class Ribbon {
@@ -13,7 +13,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		private LineArt lineArt;
 
 		// プロパティ
-		public Excel.Application Excel {
+		public Office.Application Application {
 			get {
 				return Globals.ThisAddIn.Application;
 			}
@@ -38,7 +38,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 					this.ddAfterImageCount.Items.Add(item);
 				}
 
-				this.lineArt = new LineArt(this.Excel);
+				this.lineArt = new LineArt(this.Application);
 			} catch (Exception ex) {
 				MessageBox.Show(ex.Message);
 				MessageBox.Show(ex.StackTrace);
