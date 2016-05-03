@@ -69,7 +69,7 @@
     <Compile Include="Point.cs" />
     <Compile Include="Porigon.cs" />
     <Compile Include="PorigonCollection.cs" />
-    <Compile Include="PositionElement.cs" />
+    <Compile Include="PositionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="RibbonDesigner.cs" />
