@@ -10,7 +10,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	public partial class Ribbon {
 		// フィールド
-		private ExcelLineArt lineArt;
+		private LineArt lineArt;
 
 		// プロパティ
 		public Excel.Application Excel {
@@ -38,7 +38,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 					this.ddAfterImageCount.Items.Add(item);
 				}
 
-				this.lineArt = new ExcelLineArt(this.Excel);
+				this.lineArt = new LineArt(this.Excel);
 			} catch (Exception ex) {
 				MessageBox.Show(ex.Message);
 				MessageBox.Show(ex.StackTrace);

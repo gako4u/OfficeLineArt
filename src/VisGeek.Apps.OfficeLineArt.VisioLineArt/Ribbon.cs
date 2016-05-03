@@ -10,7 +10,7 @@ using Visio = Microsoft.Office.Interop.Visio;
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	public partial class Ribbon {
 		// フィールド
-		private VisioLineArt lineArt;
+		private LineArt lineArt;
 
 		// プロパティ
 		public Visio.Application Visio {
@@ -38,7 +38,7 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 					this.ddAfterImageCount.Items.Add(item);
 				}
 
-				this.lineArt = new VisioLineArt(this.Visio);
+				this.lineArt = new LineArt(this.Visio);
 			} catch (Exception ex) {
 				MessageBox.Show(ex.Message);
 				MessageBox.Show(ex.StackTrace);

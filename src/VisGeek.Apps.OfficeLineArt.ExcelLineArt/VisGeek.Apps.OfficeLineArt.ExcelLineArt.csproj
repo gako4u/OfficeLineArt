@@ -161,13 +161,13 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="ExcelExtensions.cs" />
+    <Compile Include="ExtensionsMethods.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ExcelLineArt.cs" />
+    <Compile Include="LineArt.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

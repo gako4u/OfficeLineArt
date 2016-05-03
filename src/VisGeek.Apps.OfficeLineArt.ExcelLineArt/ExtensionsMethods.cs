@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
-	public static class ExcelExtensions {
+	public static class ExtensionsMethods {
 		public static void SetColor(this Excel.ColorFormat colorFormat, Color color) {
-			colorFormat.RGB = ExcelExtensions.ToRGB(color);
+			colorFormat.RGB = ExtensionsMethods.ToRGB(color);
 		}
 
 		public static int ToRGB(this Color color) {

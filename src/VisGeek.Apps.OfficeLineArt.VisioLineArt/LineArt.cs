@@ -1,17 +1,16 @@
-﻿using Microsoft.Office.Interop.Excel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Excel = Microsoft.Office.Interop.Excel;
+using Office = Microsoft.Office.Interop.Visio;
 using Forms = System.Windows.Forms;
 
-namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
-	internal class ExcelLineArt : LineArt {
+namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
+	internal class LineArt : OfficeLineArt.LineArt {
 		// コンストラクター
-		internal ExcelLineArt(Excel.Application Excel) : base() {
-			this.Excel = Excel;
+		internal LineArt(Office.Application application) : base() {
+			this.Application = application;
 		}
 
 		// フィールド
@@ -19,7 +18,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		// インデクサー
 
 		// プロパティ
-		public Excel.Application Excel { get; }
+		public Office.Application Application { get; }
 
 		// イベントハンドラー
 
@@ -35,7 +34,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 			}
 		}
 
-		protected override OfficeLineArt.Field CreateField(LineArt lineArt, int apexCount, int afterImageCount) {
+		protected override OfficeLineArt.Field CreateField(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) {
 			return new Field(this, apexCount, afterImageCount);
 		}
 

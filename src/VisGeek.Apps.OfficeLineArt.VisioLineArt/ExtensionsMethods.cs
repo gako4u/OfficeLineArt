@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	[DebuggerStepThrough]
-	public static class VisioExtensions {
+	public static class ExtensionsMethods {
 		public static IEnumerable<Page> getPages(this IVDocument document) {
 			return document.Pages.Cast<Page>();
 		}

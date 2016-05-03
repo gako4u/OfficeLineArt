@@ -9,8 +9,8 @@ using Visio = Microsoft.Office.Interop.Visio;
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class Field : OfficeLineArt.Field {
 		// コンストラクター
-		internal Field(LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {
-			this.Visio = ((VisioLineArt)lineArt).Visio;
+		internal Field(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {
+			this.Visio = ((LineArt)lineArt).Application;
 			this.Page = this.Visio.Documents.Add("").Pages[1];
 		}
 

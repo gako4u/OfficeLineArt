@@ -9,8 +9,8 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	internal class Field : OfficeLineArt.Field {
 		// コンストラクター
-		internal Field(LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {
-			this.Excel = ((ExcelLineArt)lineArt).Excel;
+		internal Field(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {
+			this.Excel = ((LineArt)lineArt).Application;
 
 			var wb = this.Excel.Workbooks.Add();
 			Worksheet ws = wb.Worksheets[1];
