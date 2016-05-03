@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public abstract class LineArt {
 		// コンストラクター
 		protected LineArt() {

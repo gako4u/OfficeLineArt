@@ -1,11 +1,10 @@
-﻿using Gako.Collections.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
 using System.Drawing;
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public class Polygon {
 		// コンストラクター
 		internal Polygon(PoLygonCollection polygons, int apexCount, Color color) {

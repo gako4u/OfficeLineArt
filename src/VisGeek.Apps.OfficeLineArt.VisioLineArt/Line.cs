@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gako.Apps.OfficeLineArt.VisioLineArt {
+namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class Line : OfficeLineArt.Line {
 		// コンストラクター
 		internal Line(LineCollection lines, Apex begin, Apex end, Field field) : base(lines, begin, end) {

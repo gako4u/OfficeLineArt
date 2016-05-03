@@ -1,11 +1,10 @@
-﻿using Gako.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public struct Direction {
 		// コンストラクター
 		private Direction(string displayName, int sign) {

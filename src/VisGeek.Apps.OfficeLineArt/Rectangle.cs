@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public class Rectangle {
 		// コンストラクター
 		public Rectangle(Field field, double beginLeft, double beginTop, double endLeft, double endTop) {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace Gako.Apps.OfficeLineArt.ExcelLineArt {
+namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	internal class Field : OfficeLineArt.Field {
 		// コンストラクター
 		internal Field(LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace Gako.Apps.OfficeLineArt.ExcelLineArt {
+namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	public static class ExcelExtensions {
 		public static void SetColor(this Excel.ColorFormat colorFormat, Color color) {
 			colorFormat.RGB = ExcelExtensions.ToRGB(color);

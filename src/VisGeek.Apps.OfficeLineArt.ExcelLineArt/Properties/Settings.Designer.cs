@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gako.Apps.OfficeLineArt.ExcelLineArt.Properties {
+namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

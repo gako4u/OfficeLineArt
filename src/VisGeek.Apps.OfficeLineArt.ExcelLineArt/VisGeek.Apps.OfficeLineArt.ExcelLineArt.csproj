@@ -25,8 +25,8 @@
     <ProjectGuid>{0A4B92B6-1ED9-427A-B3DF-B20C54E79FEE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>Gako.Apps.OfficeLineArt.ExcelLineArt</RootNamespace>
-    <AssemblyName>Gako.Apps.OfficeLineArt.ExcelLineArt</AssemblyName>
+    <RootNamespace>VisGeek.Apps.OfficeLineArt.ExcelLineArt</RootNamespace>
+    <AssemblyName>VisGeek.Apps.OfficeLineArt.ExcelLineArt</AssemblyName>
     <LoadBehavior>3</LoadBehavior>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
@@ -208,13 +208,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Gako\Gako\Gako.csproj">
-      <Project>{6B845116-E838-4FC8-92D2-C757D749201F}</Project>
-      <Name>Gako</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gako.Apps.OfficeLineArt\Gako.Apps.OfficeLineArt.csproj">
+    <ProjectReference Include="..\VisGeek.Apps.OfficeLineArt\VisGeek.Apps.OfficeLineArt.csproj">
       <Project>{D64D887B-39BC-4A09-B0C3-1627BE346B1F}</Project>
-      <Name>Gako.Apps.OfficeLineArt</Name>
+      <Name>VisGeek.Apps.OfficeLineArt</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

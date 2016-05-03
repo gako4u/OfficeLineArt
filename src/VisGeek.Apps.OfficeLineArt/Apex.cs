@@ -1,7 +1,6 @@
-﻿using Gako.Utilities;
-using System;
+﻿using System;
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public class Apex {
 		// コンストラクター
 		internal Apex(Polygon polygon) {

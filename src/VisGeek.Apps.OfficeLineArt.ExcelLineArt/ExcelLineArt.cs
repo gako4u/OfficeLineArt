@@ -1,5 +1,4 @@
-﻿using Gako.Apps.OfficeLineArt;
-using Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using Forms = System.Windows.Forms;
 
-namespace Gako.Apps.OfficeLineArt.ExcelLineArt {
+namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	internal class ExcelLineArt : LineArt {
 		// コンストラクター
 		internal ExcelLineArt(Excel.Application Excel) : base() {

@@ -1,4 +1,4 @@
-﻿namespace Gako.Apps.OfficeLineArt.VisioLineArt {
+﻿namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	partial class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase {
 		/// <summary>
 		/// 必要なデザイナー変数です。

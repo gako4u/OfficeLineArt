@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public abstract class Field {
 		// コンストラクター
 		protected Field(LineArt lineArt, int apexCount, int afterImageCount) {

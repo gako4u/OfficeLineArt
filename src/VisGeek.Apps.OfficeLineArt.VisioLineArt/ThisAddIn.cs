@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using Visio = Microsoft.Office.Interop.Visio;
 using Office = Microsoft.Office.Core;
 
-namespace Gako.Apps.OfficeLineArt.VisioLineArt {
+namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	public partial class ThisAddIn {
 		private void ThisAddIn_Startup(object sender, System.EventArgs e) {
 		}

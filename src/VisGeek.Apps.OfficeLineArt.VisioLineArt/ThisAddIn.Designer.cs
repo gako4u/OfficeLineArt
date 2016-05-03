@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 #pragma warning disable 414
-namespace Gako.Apps.OfficeLineArt.VisioLineArt {
+namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
     
     
     /// 

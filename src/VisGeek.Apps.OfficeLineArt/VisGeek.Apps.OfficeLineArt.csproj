@@ -7,8 +7,8 @@
     <ProjectGuid>{D64D887B-39BC-4A09-B0C3-1627BE346B1F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gako.Apps.OfficeLineArt</RootNamespace>
-    <AssemblyName>Gako.Apps.OfficeLineArt</AssemblyName>
+    <RootNamespace>VisGeek.Apps.OfficeLineArt</RootNamespace>
+    <AssemblyName>VisGeek.Apps.OfficeLineArt</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -54,6 +54,7 @@
     <Compile Include="Apex.cs" />
     <Compile Include="ApexCollection.cs" />
     <Compile Include="Direction.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="LineArt.cs" />

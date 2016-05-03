@@ -1,11 +1,10 @@
-﻿using Gako.Collections.Utilities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Collections;
 using System.Diagnostics;
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public class ApexCollection : IEnumerable<Apex> {
 		// コンストラクター
 		internal ApexCollection(Polygon polygon, int apexCount) {

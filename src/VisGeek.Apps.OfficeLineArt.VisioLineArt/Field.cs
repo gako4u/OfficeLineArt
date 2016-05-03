@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Visio;
 using Visio = Microsoft.Office.Interop.Visio;
 
-namespace Gako.Apps.OfficeLineArt.VisioLineArt {
+namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class Field : OfficeLineArt.Field {
 		// コンストラクター
 		internal Field(LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {

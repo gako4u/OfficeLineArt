@@ -1,11 +1,10 @@
-﻿using Gako.Collections.Utilities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Collections;
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public abstract class Line {
 		// コンストラクター
 		protected Line(LineCollection lines, Apex begin, Apex end) {

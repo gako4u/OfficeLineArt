@@ -6,12 +6,12 @@ using System.Security;
 // アセンブリに関する一般情報は、以下の属性セットによって 
 // 制御されます。アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更します。
-[assembly: AssemblyTitle("Gako.Apps.OfficeLineArt.ExcelLineArt")]
+[assembly: AssemblyTitle("VisGeek.Apps.OfficeLineArt.ExcelLineArt")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Gako.Apps.OfficeLineArt.ExcelLineArt")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyProduct("VisGeek.Apps.OfficeLineArt.ExcelLineArt")]
+[assembly: AssemblyCopyright("Copyright ©  2016 visGeek")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

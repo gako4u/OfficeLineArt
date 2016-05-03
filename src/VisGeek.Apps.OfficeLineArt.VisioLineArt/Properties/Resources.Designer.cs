@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gako.Apps.OfficeLineArt.VisioLineArt.Properties {
+namespace VisGeek.Apps.OfficeLineArt.VisioLineArt.Properties {
     using System;
     
     

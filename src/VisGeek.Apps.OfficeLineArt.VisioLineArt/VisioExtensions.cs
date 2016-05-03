@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Visio;
 using System.Diagnostics;
 
-namespace Gako.Apps.OfficeLineArt.VisioLineArt {
+namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	[DebuggerStepThrough]
 	public static class VisioExtensions {
 		public static IEnumerable<Page> getPages(this IVDocument document) {

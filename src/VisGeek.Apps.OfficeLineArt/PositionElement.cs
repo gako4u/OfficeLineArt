@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gako.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt {
 	public struct PositionElement {
 		// コンストラクター
 		internal PositionElement(Func<double> minValue, Func<double> maxValue, Direction direction, double value)

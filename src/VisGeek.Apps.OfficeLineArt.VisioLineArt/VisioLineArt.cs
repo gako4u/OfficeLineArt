@@ -1,5 +1,4 @@
-﻿using Gako.Apps.OfficeLineArt;
-using Microsoft.Office.Interop.Visio;
+﻿using Microsoft.Office.Interop.Visio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 using Visio = Microsoft.Office.Interop.Visio;
 using Forms = System.Windows.Forms;
 
-namespace Gako.Apps.OfficeLineArt.VisioLineArt {
+namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class VisioLineArt : LineArt {
 		// コンストラクター
 		internal VisioLineArt(Visio.Application visio) : base() {

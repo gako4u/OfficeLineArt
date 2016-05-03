@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Drawing;
 
-namespace Gako.Apps.OfficeLineArt.ExcelLineArt {
+namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	internal class Line : OfficeLineArt.Line {
 		// コンストラクター
 		internal Line(LineCollection lines, Apex begin, Apex end) : base(lines, begin, end) {
