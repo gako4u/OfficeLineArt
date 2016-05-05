@@ -1,2 +1,8 @@
 # OfficeLineArt
-Microsoft Office ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å“®‚­ƒ‰ƒCƒ“ƒA[ƒg
+Microsoft Office ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§å‹•ããƒ©ã‚¤ãƒ³ã‚¢ãƒ¼ãƒˆ
+
+## Visio
+https://www.youtube.com/watch?v=dBZYv3CoTHw
+
+## Excel
+https://www.youtube.com/watch?v=pUC6fhAOSCE
