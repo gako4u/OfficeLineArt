@@ -32,10 +32,6 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 			this.shape.SetEnd(this.End.X.Value, this.End.Y.Value);
 		}
 
-		protected override void BringToFront() {
-			this.shape.BringToFront();
-		}
-
 		// メソッド
 
 		// スタティックコンストラクター

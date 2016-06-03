@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
-using System.Drawing;
 
 namespace VisGeek.Apps.OfficeLineArt {
 	/// <summary>多角形
@@ -32,10 +31,6 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// イベントハンドラー
 
 		// メソッド
-		internal void BringToFront() {
-			this.Lines.BringToFront();
-		}
-
 		internal void Move() {
 			this.Apexes.ForEach(apex => apex.Move());
 

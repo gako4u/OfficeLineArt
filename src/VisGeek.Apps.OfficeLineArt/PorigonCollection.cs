@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +15,12 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 			// 多角形を作成する。
 			this.items =
-				Enumerable.Range(0, count)
+				Enumerable
+					.Range(0, count)
+					.Reverse()
 					.Select(idx => new Polygon(this, apexCount, this.GetColor(color, idx, count)))
+					.Reverse()
 					.ToArray();
-
-			// Z オーダーを設定する。
-			this.items.Reverse().ForEach(item => item.BringToFront());
 
 			// 選択状態を解除する。
 			field.DelselectAll();
@@ -69,7 +68,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 		}
 
 		internal void RefrectPositions() {
-			this.ForEach(porigon => porigon.Lines.RefrectPositions());
+			this.Reverse().ForEach(porigon => porigon.Lines.RefrectPositions());
 		}
 
 		private Color GetColor(Color initialColor, int idx, int count) {
@@ -78,10 +77,10 @@ namespace VisGeek.Apps.OfficeLineArt {
 			switch (count) {
 				case 1:
 				default:
-					int r = Math.Min(255, result.R + (255 - result.R) / count * idx);
-					int g = Math.Min(255, result.G + (255 - result.G) / count * idx);
-					int b = Math.Min(255, result.B + (255 - result.B) / count * idx);
-					result = Color.FromArgb(r, g, b);
+					byte r = (byte)Math.Min(255, result.R + (255 - result.R) / count * idx);
+					byte g = (byte)Math.Min(255, result.G + (255 - result.G) / count * idx);
+					byte b = (byte)Math.Min(255, result.B + (255 - result.B) / count * idx);
+					result = new Color(r, g, b);
 					break;
 			}
 

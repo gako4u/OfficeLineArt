@@ -47,10 +47,6 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 			return result;
 		}
 
-		protected override void BringToFront() {
-			this.shape.ZOrder(MsoZOrderCmd.msoBringToFront);
-		}
-
 		// スタティックコンストラクター
 
 		// スタティックフィールド

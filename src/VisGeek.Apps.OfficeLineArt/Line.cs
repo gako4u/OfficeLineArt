@@ -32,8 +32,6 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 		protected internal abstract void RefrectFromEnd();
 
-		protected internal abstract void BringToFront();
-
 		// メソッド
 		public override string ToString() {
 			return string.Format("Begin:{2} End:{1}", this.Begin, this.End);

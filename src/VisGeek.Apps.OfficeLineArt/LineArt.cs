@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace VisGeek.Apps.OfficeLineArt {
 	/// <summary>ラインアートの抽象クラス
@@ -49,7 +47,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 				this.CancellationRequest = false;
 				var field = this.CreateField(this, apexCount, afterImageCount);
 				field.SetHandler();
-				var polygons = new PoLygonCollection(field, apexCount, afterImageCount + 1, Color.FromArgb(255, 0, 0));
+				var polygons = new PoLygonCollection(field, apexCount, afterImageCount + 1, new Color(255, 0, 0));
 
 				long count = 0;
 				DateTime nextFrame = DateTime.Now.Add(LineArt.FrameInterval);
@@ -67,8 +65,10 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 						DateTime now = DateTime.Now;
 						if (now < nextFrame) {
-							polygons.RefrectPositions();
-							this.Draw();
+							this.Invoke(() => {
+								polygons.RefrectPositions();
+								this.Draw();
+							});
 
 							now = DateTime.Now;
 							if (now < nextFrame) {
@@ -91,6 +91,19 @@ namespace VisGeek.Apps.OfficeLineArt {
 		protected abstract void Sleep(TimeSpan timeSpan);
 
 		protected abstract Field CreateField(LineArt lineArt, int apexCount, int afterImageCount);
+
+		internal void Invoke(Action action) {
+			this.Invoke<object>(
+				() => {
+					action();
+					return null;
+				}
+			);
+		}
+
+		protected internal virtual T Invoke<T>(Func<T> action) {
+			return action();
+		}
 
 		private bool trySetRunning() {
 			bool result = false;

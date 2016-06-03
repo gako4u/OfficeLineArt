@@ -14,16 +14,10 @@ namespace VisGeek.Apps.OfficeLineArt {
 			this.Sign = sign;
 		}
 
-		// フィールド
-
-		// インデクサー
-
 		// プロパティ
 		public string DisplayName { get; }
 
 		public int Sign { get; }
-
-		// イベントハンドラー
 
 		// メソッド
 		public override string ToString() {

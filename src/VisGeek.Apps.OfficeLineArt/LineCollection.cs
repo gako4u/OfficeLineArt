@@ -21,23 +21,19 @@ namespace VisGeek.Apps.OfficeLineArt {
 					Apex prev = e.Current;
 					while (e.MoveNext()) {
 						Apex current = e.Current;
-						var line = polygon.Polygons.Field.CreateLine(this, prev, current);
+						var line = polygon.Polygons.LineArt.Invoke(() => polygon.Polygons.Field.CreateLine(this, prev, current));
 						lineList.Add(line);
 						prev = current;
 					}
 
 					{
-						var line = polygon.Polygons.Field.CreateLine(this, prev, first);
+						var line = polygon.Polygons.LineArt.Invoke(() => polygon.Polygons.Field.CreateLine(this, prev, first));
 						lineList.Add(line);
 					}
 				}
 
 				this.lines = lineList.ToArray();
 			}
-		}
-
-		internal void BringToFront() {
-			this.ForEach(line => line.BringToFront());
 		}
 
 		// フィールド
