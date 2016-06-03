@@ -35,6 +35,12 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 		public double Value { get; }
 
+		public float FloatValue {
+			get {
+				return (float)this.Value;
+			}
+		}
+
 		public double StepLength { get; }
 
 		// イベントハンドラー
@@ -87,7 +93,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 			Debug.WriteLine("StepLength:{0}", result);
 
-			return result;			
+			return result;
 		}
 	}
 }

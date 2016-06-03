@@ -77,10 +77,10 @@ namespace VisGeek.Apps.OfficeLineArt {
 			switch (count) {
 				case 1:
 				default:
-					byte a = result.A;
-					byte r = (byte)Math.Min(255, result.R + (255 - result.R) / count * idx);
-					byte g = (byte)Math.Min(255, result.G + (255 - result.G) / count * idx);
-					byte b = (byte)Math.Min(255, result.B + (255 - result.B) / count * idx);
+					byte a = (byte)Math.Max(0, result.A - (result.A / count * idx));
+					byte r = result.R;
+					byte g = result.G;
+					byte b = result.B;
 					result = new Color(a, r, g, b);
 					break;
 			}

@@ -14,6 +14,12 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 
 			var color = lines.Polygon.Color;
 			cell.FormulaU = string.Format("THEMEGUARD(RGB({0},{1},{2}))", color.R, color.G, color.B);
+
+			// 透過度
+			double transparency = color.Transparency;
+			string transparencyPercentage = string.Format("{0}%", transparency * 100);
+			this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowLine, VisCellIndices.visLineColorTrans).FormulaU = transparencyPercentage;
+			this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowGradientProperties, VisCellIndices.visLineGradientEnabled).FormulaU = "FALSE";
 		}
 
 		// フィールド

@@ -20,5 +20,11 @@ namespace VisGeek.Apps.OfficeLineArt {
 		public byte G { get; }
 
 		public byte R { get; }
+
+		public double Transparency {
+			get {
+				return (255 - this.A) / 255.0;
+			}
+		}
 	}
 }
