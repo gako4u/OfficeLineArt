@@ -1,0 +1,9 @@
+﻿<Application x:Class="VisGeek.Apps.OfficeLineArt.WpfLineArt.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:VisGeek.Apps.OfficeLineArt.WpfLineArt"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
