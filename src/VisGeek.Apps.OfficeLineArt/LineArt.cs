@@ -47,7 +47,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 				this.CancellationRequest = false;
 				var field = this.CreateField(this, apexCount, afterImageCount);
 				field.SetHandler();
-				var polygons = new PoLygonCollection(field, apexCount, afterImageCount + 1, new Color(255, 0, 0));
+				var polygons = new PoLygonCollection(field, apexCount, afterImageCount + 1, new Color(255, 255, 0, 0));
 
 				long count = 0;
 				DateTime nextFrame = DateTime.Now.Add(LineArt.FrameInterval);

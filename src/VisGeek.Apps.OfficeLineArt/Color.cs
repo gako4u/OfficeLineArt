@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace VisGeek.Apps.OfficeLineArt {
 	public struct Color {
-		public Color(byte r, byte g, byte b) {
+		public Color(byte a, byte r, byte g, byte b) {
+			this.A = a;
 			this.R = r;
 			this.G = g;
 			this.B = b;
 		}
+
+		public byte A { get; }
 
 		public byte B { get; }
 

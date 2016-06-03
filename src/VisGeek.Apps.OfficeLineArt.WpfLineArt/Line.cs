@@ -36,10 +36,11 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 
 		// メソッド
 		private System.Windows.Media.Color CreateColor(Color color) {
+			byte a = color.A;
 			byte r = color.R;
 			byte g = color.G;
 			byte b = color.B;
-			return System.Windows.Media.Color.FromRgb(r, g, b);
+			return System.Windows.Media.Color.FromArgb(a, r, g, b);
 		}
 
 		// スタティックコンストラクター
