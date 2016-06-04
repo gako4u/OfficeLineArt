@@ -4,34 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using VisGeek.Apps.OfficeLineArt.Model;
+using VisGeek.Apps.OfficeLineArt.View;
 
 namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
-	internal class Line : OfficeLineArt.Line {
+	internal class Line : OfficeLineArt.View.Line {
 		// コンストラクター
-		internal Line(Polygon parent, Apex begin, Apex end, Field field) : base(parent, begin, end) {
-			var beginPoint = new System.Windows.Point(begin.X.Value, begin.Y.Value);
-			var endPoint = new System.Windows.Point(end.X.Value, end.Y.Value);
-			this.shape = new System.Windows.Shapes.Line();
-			this.shape.Stroke = new SolidColorBrush(this.CreateColor());
-			field.Canvas.Children.Add(this.shape);
+		internal Line(LineGroup parent, Apex begin, Apex end) : base(parent, begin, end) {
 		}
 
 		// フィールド
-		private readonly System.Windows.Shapes.Line shape;
-
-		// インデクサー
+		private System.Windows.Shapes.Line shape = null;
 
 		// プロパティ
-
-		// イベントハンドラー
-		protected override void RefrectFromBegin() {
-			this.shape.X1 = this.Begin.X.Value;
-			this.shape.Y1 = this.Begin.Y.Value;
+		public new Field Field {
+			get {
+				return (Field)base.Field;
+			}
 		}
 
-		protected override void RefrectFromEnd() {
-			this.shape.X2 = this.End.X.Value;
-			this.shape.Y2 = this.End.Y.Value;
+		// イベントハンドラー
+		protected override void Draw(double beginX, double beginY, double endX, double endY) {
+			if (this.shape == null) {
+				this.shape = new System.Windows.Shapes.Line();
+				this.shape.Stroke = new SolidColorBrush(this.CreateColor());
+				this.Field.Canvas.Children.Add(this.shape);
+			}
+
+			this.shape.X1 = beginX;
+			this.shape.Y1 = beginY;
+			this.shape.X2 = endX;
+			this.shape.Y2 = endY;
 		}
 
 		// メソッド

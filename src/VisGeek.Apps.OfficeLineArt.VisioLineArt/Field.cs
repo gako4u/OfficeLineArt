@@ -5,25 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Visio;
 using Visio = Microsoft.Office.Interop.Visio;
+using VisGeek.Apps.OfficeLineArt.Model;
+using VisGeek.Apps.OfficeLineArt.View;
 
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
-	internal class Field : OfficeLineArt.Field {
+	internal class Field : OfficeLineArt.View.Field {
 		// コンストラクター
-		internal Field(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {
+		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color) : base(lineArt, fieldModel, color) {
 			this.Visio = ((LineArt)lineArt).Application;
 			this.Page = this.Visio.Documents.Add("").Pages[1];
 		}
 
 		// フィールド
 
-		// インデクサー
-
 		// プロパティ
 		public Application Visio { get; }
 
 		public Page Page { get; }
-
-		// イベントハンドラー
 
 		// メソッド
 		protected override void SetFieldDisabledHandler(Action disableFiledMethod) {
@@ -32,12 +30,8 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 			this.Page.BeforePageDelete += p => disableFiledMethod();
 		}
 
-		protected override void DelselectAll() {
-			this.Page.Application.ActiveWindow.DeselectAll();
-		}
-
-		protected override OfficeLineArt.Line CreateLine(Polygon polygon, Apex begin, Apex end) {
-			return new Line(polygon, begin, end, this);
+		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {
+			return new Line(polygon, begin, end);
 		}
 
 		protected override void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY) {

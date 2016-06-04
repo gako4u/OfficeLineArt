@@ -33,8 +33,8 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 			Thread.Sleep(timeSpan);
 		}
 
-		protected override OfficeLineArt.Field CreateField(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) {
-			return new Field(this, apexCount, afterImageCount);
+		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
+			return new Field(this, fieldModel, color);
 		}
 
 		protected override T Invoke<T>(Func<T> action) {
@@ -42,13 +42,5 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 			invokeResult.Wait();
 			return (T)invokeResult.Result;
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Office = Microsoft.Office.Interop.Excel;
 using Forms = System.Windows.Forms;
+using VisGeek.Apps.OfficeLineArt.Model;
+using VisGeek.Apps.OfficeLineArt.View;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	internal class LineArt : OfficeLineArt.LineArt {
@@ -34,16 +36,8 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 			}
 		}
 
-		protected override OfficeLineArt.Field CreateField(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) {
-			return new Field(this, apexCount, afterImageCount);
+		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
+			return new Field(this, fieldModel, color);
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

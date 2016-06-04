@@ -59,10 +59,6 @@ namespace VisGeek.Apps.OfficeLineArt {
 		private readonly RibbonDropDown afterImageCountDropDown;
 		private readonly RibbonToggleButton toggleButton;
 
-		// インデクサー
-
-		// プロパティ
-
 		// イベントハンドラー
 		private void toggleButton_Click(object sender, RibbonControlEventArgs e) {
 			try {
@@ -76,6 +72,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 					int apexCount = (int)this.apexCountDropDown.SelectedItem.Tag;
 					int afterImageCount = (int)this.afterImageCountDropDown.SelectedItem.Tag;
+
 					this.lineArt.Start(apexCount, afterImageCount);
 
 					this.apexCountDropDown.Enabled = true;
@@ -108,14 +105,6 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 			return result;
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 
 		// クラス
 		/// <summary>リボンの要素の描画を一時的に止めるクラス。

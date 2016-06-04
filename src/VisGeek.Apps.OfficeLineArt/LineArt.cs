@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using VisGeek.Apps.OfficeLineArt.Model;
 
 namespace VisGeek.Apps.OfficeLineArt {
 	/// <summary>ラインアートの抽象クラス
@@ -25,13 +26,14 @@ namespace VisGeek.Apps.OfficeLineArt {
 					return this._isRunning;
 				}
 			}
-
 			set {
 				lock (this.lockObj) {
 					this._isRunning = value;
 				}
 			}
 		}
+
+		public bool IsEnabled { get; private set; }
 
 		public bool CancellationRequest { get; private set; }
 
@@ -45,9 +47,10 @@ namespace VisGeek.Apps.OfficeLineArt {
 		public void Start(int apexCount, int afterImageCount) {
 			if (this.trySetRunning()) {
 				this.CancellationRequest = false;
-				var field = this.CreateField(this, apexCount, afterImageCount);
-				field.SetHandler();
-				var polygons = new PolygonCollection(field, apexCount, afterImageCount + 1, new Color(255, 0, 0));
+				var fieldModel = new Model.Field(this, 640.0, 480.0, apexCount, afterImageCount);
+
+				var fieldView = this.CreateField(fieldModel, new Color(255, 0, 0));
+				fieldView.SetHandler();
 
 				long count = 0;
 				DateTime nextFrame = DateTime.Now.Add(LineArt.FrameInterval);
@@ -57,16 +60,16 @@ namespace VisGeek.Apps.OfficeLineArt {
 					if (this.CancellationRequest) {
 						break;
 
-					} else if (!field.IsEnabled) {
+					} else if (!fieldView.IsEnabled) {
 						break;
 
 					} else {
-						polygons.Move();
+						fieldModel.Polygons.Move();
 
 						DateTime now = DateTime.Now;
 						if (now < nextFrame) {
 							this.Invoke(() => {
-								polygons.RefrectPositions();
+								fieldView.Draw();
 								this.Draw();
 							});
 
@@ -86,13 +89,13 @@ namespace VisGeek.Apps.OfficeLineArt {
 			}
 		}
 
+		protected abstract View.Field CreateField(Field fieldModel, Color color);
+
 		protected abstract void Draw();
 
 		protected abstract void Sleep(TimeSpan timeSpan);
 
-		protected abstract Field CreateField(LineArt lineArt, int apexCount, int afterImageCount);
-
-		internal void Invoke(Action action) {
+		private void Invoke(Action action) {
 			this.Invoke<object>(
 				() => {
 					action();
@@ -101,7 +104,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 			);
 		}
 
-		protected internal virtual T Invoke<T>(Func<T> action) {
+		protected virtual T Invoke<T>(Func<T> action) {
 			return action();
 		}
 

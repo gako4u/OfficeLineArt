@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using Excel = Microsoft.Office.Interop.Excel;
+using VisGeek.Apps.OfficeLineArt.Model;
+using VisGeek.Apps.OfficeLineArt.View;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
-	internal class Field : OfficeLineArt.Field {
+	internal class Field : OfficeLineArt.View.Field {
 		// コンストラクター
-		internal Field(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {
+		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color) : base(lineArt, fieldModel, color) {
 			this.Excel = ((LineArt)lineArt).Application;
 
 			var wb = this.Excel.Workbooks.Add();
@@ -22,14 +24,10 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		// フィールド
 		private System.Action disableFiledMethod;
 
-		// インデクサー
-
 		// プロパティ
 		public Application Excel { get; }
 
 		public Range Cell { get; }
-
-		// イベントハンドラー
 
 		// メソッド
 		protected override void SetFieldDisabledHandler(System.Action disableFiledMethod) {
@@ -52,11 +50,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 			this.disableFiledMethod();
 		}
 
-		protected override void DelselectAll() {
-			this.Cell.Select();
-		}
-
-		protected override OfficeLineArt.Line CreateLine(Polygon polygon, Apex begin, Apex end) {
+		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {
 			return new Line(polygon, begin, end);
 		}
 

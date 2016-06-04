@@ -34,16 +34,8 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 			}
 		}
 
-		protected override OfficeLineArt.Field CreateField(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) {
-			return new Field(this, apexCount, afterImageCount);
+		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
+			return new Field(this, fieldModel, color);
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 
-namespace VisGeek.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt.Model {
 	/// <summary>頂点のコレクション
 	/// </summary>
 	public class ApexCollection : CollectionBase<Apex> {

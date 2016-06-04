@@ -4,36 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using VisGeek.Apps.OfficeLineArt.Model;
+using VisGeek.Apps.OfficeLineArt.View;
 
 namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
-	internal class Field : OfficeLineArt.Field {
+	internal class Field : OfficeLineArt.View.Field {
 		// コンストラクター
-		internal Field(OfficeLineArt.LineArt lineArt, int apexCount, int afterImageCount) : base(lineArt, apexCount, afterImageCount) {
+		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color) : base(lineArt, fieldModel, color) {
 			this.MainWindow = ((LineArt)lineArt).MainWindow;
 			this.Canvas = ((LineArt)lineArt).Canvas;
 		}
-
-		// フィールド
-
-		// インデクサー
 
 		// プロパティ
 		public MainWindow MainWindow { get; }
 
 		public Canvas Canvas { get; }
 
-		// イベントハンドラー
-
 		// メソッド
 		protected override void SetFieldDisabledHandler(Action disableFiledMethod) {
 			this.MainWindow.Closing += (s, e) => disableFiledMethod();
 		}
 
-		protected override void DelselectAll() {
-		}
-
-		protected override OfficeLineArt.Line CreateLine(Polygon polygon, Apex begin, Apex end) {
-			return new Line(polygon, begin, end, this);
+		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {
+			return new Line(polygon, begin, end);
 		}
 
 		protected override void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY) {
@@ -46,13 +39,5 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 			endX = beginX + width;
 			endY = beginY + height;
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

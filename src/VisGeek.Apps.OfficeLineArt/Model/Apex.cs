@@ -1,29 +1,15 @@
 ﻿using System;
 
-namespace VisGeek.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt.Model {
 	/// <summary>頂点
 	/// </summary>
 	public class Apex {
 		// コンストラクター
 		internal Apex(Polygon polygon) {
 			this.Polygon = polygon;
-			var field = polygon.Polygons.Field;
-
-			this.X =
-				new PositionInfo(
-					() => field.GetRectangle().Begin.X
-					, () => field.GetRectangle().End.X
-					, Direction.GetRandom()
-					, 0
-				);
-
-			this.Y =
-				new PositionInfo(
-					() => field.GetRectangle().Begin.Y
-					, () => field.GetRectangle().End.Y
-					, Direction.GetRandom()
-					, 0
-				);
+			var field = polygon.Field;
+			this.X = new PositionInfo(field.Width, Direction.GetRandom(), 0);
+			this.Y = new PositionInfo(field.Height, Direction.GetRandom(), 0);
 		}
 
 		// フィールド
@@ -36,6 +22,18 @@ namespace VisGeek.Apps.OfficeLineArt {
 		public PositionInfo X { get; private set; }
 
 		public PositionInfo Y { get; private set; }
+
+		public double RatioX {
+			get {
+				return this.X.Value / this.Polygon.Field.Width;
+			}
+		}
+
+		public double RatioY {
+			get {
+				return this.Y.Value / this.Polygon.Field.Height;
+			}
+		}
 
 		// イベントハンドラー
 
@@ -53,13 +51,5 @@ namespace VisGeek.Apps.OfficeLineArt {
 			this.X = other.X;
 			this.Y = other.Y;
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

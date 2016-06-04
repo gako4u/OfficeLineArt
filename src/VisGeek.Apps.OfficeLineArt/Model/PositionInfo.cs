@@ -5,17 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VisGeek.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt.Model {
 	/// <summary>多角形の頂点の位置の各次元が持つ情報
 	/// </summary>
 	public struct PositionInfo {
 		// コンストラクター
-		internal PositionInfo(Func<double> minValue, Func<double> maxValue, Direction direction, double value)
-			: this(minValue, maxValue, direction, value, PositionInfo.GetStepLength(minValue(), maxValue())) {
+		internal PositionInfo(double maxValue, Direction direction, double value)
+			: this(maxValue, direction, value, PositionInfo.GetStepLength(maxValue)) {
 		}
 
-		private PositionInfo(Func<double> minValue, Func<double> maxValue, Direction direction, double value, double stepLength) {
-			this.MinValue = minValue;
+		private PositionInfo(double maxValue, Direction direction, double value, double stepLength) {
 			this.MaxValue = maxValue;
 			this.Direction = direction;
 			this.Value = value;
@@ -27,9 +26,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// インデクサー
 
 		// プロパティ
-		private Func<double> MinValue { get; }
-
-		private Func<double> MaxValue { get; }
+		private double MaxValue { get; }
 
 		public Direction Direction { get; }
 
@@ -60,8 +57,8 @@ namespace VisGeek.Apps.OfficeLineArt {
 			double stepLength = this.StepLength;
 
 			// 反射の計算
-			double minValue = this.MinValue();
-			double maxValue = this.MaxValue();
+			double minValue = 0.0;
+			double maxValue = this.MaxValue;
 			if (newValue < minValue || maxValue < newValue) {
 				double limit;
 				if (newDirection == Direction.Positive) {
@@ -72,10 +69,10 @@ namespace VisGeek.Apps.OfficeLineArt {
 					newValue = minValue;
 				}
 				newDirection = !newDirection;
-				stepLength = PositionInfo.GetStepLength(minValue, maxValue);
+				stepLength = PositionInfo.GetStepLength(maxValue);
 			}
 
-			return new PositionInfo(this.MinValue, this.MaxValue, newDirection, newValue, stepLength);
+			return new PositionInfo(this.MaxValue, newDirection, newValue, stepLength);
 		}
 
 		// スタティックコンストラクター
@@ -85,7 +82,8 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// スタティックプロパティ
 
 		// スタティックメソッド
-		private static double GetStepLength(double minValue, double maxValue) {
+		private static double GetStepLength(double maxValue) {
+			double minValue = 0.0;
 			double length = maxValue - minValue;
 
 			int stepCount = LineArt.Random.Next(50, 100);

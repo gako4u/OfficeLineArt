@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VisGeek.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt.Model {
 	/// <summary>頂点の進行方向
 	/// </summary>
 	public struct Direction {

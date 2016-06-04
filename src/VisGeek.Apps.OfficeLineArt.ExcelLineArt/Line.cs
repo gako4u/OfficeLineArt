@@ -7,49 +7,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Drawing;
+using VisGeek.Apps.OfficeLineArt.Model;
+using VisGeek.Apps.OfficeLineArt.View;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
-	internal class Line : OfficeLineArt.Line {
+	internal class Line : OfficeLineArt.View.Line {
 		// コンストラクター
-		internal Line(Polygon parent, Apex begin, Apex end) : base(parent, begin, end) {
-			this.Field = (Field)parent.Polygons.Field;
-			this.shape = this.CreateShape();
+		internal Line(LineGroup parent, Apex begin, Apex end) : base(parent, begin, end) {
 		}
 
 		// フィールド
-		private Excel.Shape shape;
-
-		public Field Field { get; }
-
-		// インデクサー
+		private Excel.Shape shape = null;
 
 		// プロパティ
+		public new Field Field {
+			get {
+				return (Field)base.Field;
+			}
+		}
 
 		// イベントハンドラー
-		protected override void RefrectFromBegin() {
-			// End の方にまかせる。
-		}
+		protected override void Draw(double beginX, double beginY, double endX, double endY) {
+			this.shape?.Delete();
 
-		protected override void RefrectFromEnd() {
-			this.shape.Delete();
-			this.shape = this.CreateShape();
-		}
-
-		// メソッド
-		private Excel.Shape CreateShape() {
 			var shapes = this.Field.Cell.Worksheet.Shapes;
-			var result = shapes.AddLine(this.Begin.X.FloatValue, this.Begin.Y.FloatValue, this.End.X.FloatValue, this.End.Y.FloatValue);
-			result.Line.ForeColor.SetRgb(this.Color);
-			result.Line.Transparency = (float)this.Transparency;
-			return result;
+			this.shape = shapes.AddLine((float)beginX, (float)beginY, (float)endX, (float)endY);
+			this.shape.Line.ForeColor.SetRgb(this.Parent.Parent.Color);
+			this.shape.Line.Transparency = (float)this.Parent.Transparency;
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

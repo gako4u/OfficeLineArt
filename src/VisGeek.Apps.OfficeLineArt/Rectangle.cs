@@ -11,25 +11,21 @@ namespace VisGeek.Apps.OfficeLineArt {
 			this.End = new Point(endX, endY);
 		}
 
-		// フィールド
-
-		// インデクサー
-
 		// プロパティ
 		public Point Begin { get; }
 
 		public Point End { get; }
 
-		// イベントハンドラー
+		public double Width {
+			get {
+				return this.End.X - this.Begin.X;
+			}
+		}
 
-		// メソッド
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
+		public double Height {
+			get {
+				return this.End.Y - this.Begin.Y;
+			}
+		}
 	}
 }

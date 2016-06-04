@@ -57,24 +57,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Apex.cs" />
-    <Compile Include="ApexCollection.cs" />
+    <Compile Include="Model\Apex.cs" />
+    <Compile Include="Model\ApexCollection.cs" />
     <Compile Include="CollectionBase.cs" />
     <Compile Include="Color.cs" />
-    <Compile Include="Direction.cs" />
+    <Compile Include="Model\Direction.cs" />
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="Field.cs" />
-    <Compile Include="Line.cs" />
+    <Compile Include="Model\Field.cs" />
+    <Compile Include="View\Line.cs" />
     <Compile Include="LineArt.cs" />
-    <Compile Include="LineCollection.cs" />
+    <Compile Include="View\LineGroup.cs" />
     <Compile Include="Point.cs" />
-    <Compile Include="Polygon.cs" />
-    <Compile Include="PolygonCollection.cs" />
-    <Compile Include="PositionInfo.cs" />
+    <Compile Include="Model\Polygon.cs" />
+    <Compile Include="Model\PolygonCollection.cs" />
+    <Compile Include="Model\PositionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="RibbonDesigner.cs" />
+    <Compile Include="View\Field.cs" />
+    <Compile Include="View\LineGroupCollection.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

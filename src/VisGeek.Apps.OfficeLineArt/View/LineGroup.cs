@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Collections;
+using VisGeek.Apps.OfficeLineArt.Model;
 
-namespace VisGeek.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt.View {
 	/// <summary>多角形を構成する線のコレクション
 	/// </summary>
-	public class LineCollection : CollectionBase<Line> {
+	public class LineGroup : CollectionBase<Line> {
 		// コンストラクター
-		internal LineCollection(Polygon parent, ApexCollection apexes) {
+		internal LineGroup(LineGroupCollection parent, Polygon polygon, double transparency) {
 			this.Parent = parent;
+			this.Transparency = transparency;
 
-			using (var e = apexes.GetEnumerator()) {
-				var lineList = new List<Line>(apexes.Count);
+			using (var e = polygon.Apexes.GetEnumerator()) {
+				var lineList = new List<Line>(polygon.Apexes.Count);
 
 				// 直線シェイプを作成する。
 				if (e.MoveNext()) {
@@ -21,13 +23,13 @@ namespace VisGeek.Apps.OfficeLineArt {
 					Apex prev = e.Current;
 					while (e.MoveNext()) {
 						Apex current = e.Current;
-						var line = parent.Polygons.LineArt.Invoke(() => parent.Polygons.Field.CreateLine(parent, prev, current));
+						var line = parent.Parent.CreateLine(this, prev, current);
 						lineList.Add(line);
 						prev = current;
 					}
 
 					{
-						var line = parent.Polygons.LineArt.Invoke(() => parent.Polygons.Field.CreateLine(parent, prev, first));
+						var line = parent.Parent.CreateLine(this, prev, first);
 						lineList.Add(line);
 					}
 				}
@@ -42,13 +44,15 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// インデクサー
 
 		// プロパティ
-		public Polygon Parent { get; }
+		public LineGroupCollection Parent { get; }
 
 		public int Count {
 			get {
 				return this.lines.Length;
 			}
 		}
+
+		public double Transparency { get; }
 
 		// イベントハンドラー
 
@@ -61,17 +65,8 @@ namespace VisGeek.Apps.OfficeLineArt {
 			return this.Select(line => line.ToString()).ToString(Environment.NewLine);
 		}
 
-		internal void RefrectPositions() {
-			this.ForEach(line => line.RefrectFromBegin());
-			this.ForEach(line => line.RefrectFromEnd());
+		internal void Draw(Rectangle screen) {
+			this.ForEach(line => line.Draw(screen));
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

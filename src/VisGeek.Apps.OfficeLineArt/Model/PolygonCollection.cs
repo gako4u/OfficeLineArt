@@ -5,46 +5,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VisGeek.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt.Model {
 	/// <summary>多角形のコレクション
 	/// </summary>
 	public class PolygonCollection : CollectionBase<Polygon> {
 		// コンストラクター
-		internal PolygonCollection(Field field, int apexCount, int count, Color color) {
+		internal PolygonCollection(Field field, int apexCount, int count) {
 			this.Field = field;
 
 			// 多角形を作成する。
 			this.items =
 				Enumerable
 					.Range(0, count)
-					.Reverse()
-					.Select(idx => new Polygon(this, apexCount, color, this.GetTransparency(idx, count)))
-					.Reverse()
+					.Select(idx => new Polygon(field, apexCount))
 					.ToArray();
-
-			// 選択状態を解除する。
-			field.DelselectAll();
 		}
 
 		// フィールド
-		private readonly Polygon[] items;
+		private readonly IReadOnlyList<Polygon> items;
 
 		// インデクサー
+		public Polygon this[int index] {
+			get {
+				return this.items[index];
+			}
+		}
 
 		// プロパティ
 		public Field Field { get; }
 
-		public LineArt LineArt {
+		public int Count {
 			get {
-				return this.Field.LineArt;
+				return this.items.Count;
 			}
 		}
 
-		// イベントハンドラー
-
 		// メソッド
 		public override IEnumerator<Polygon> GetEnumerator() {
-			return items.Select(item => item).GetEnumerator();
+			return items.GetEnumerator();
 		}
 
 		internal void Move() {
@@ -62,22 +60,5 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 			this.FirstOrDefault()?.Move();
 		}
-
-		internal void RefrectPositions() {
-			this.Reverse().ForEach(polygon => polygon.Lines.RefrectPositions());
-		}
-
-		private double GetTransparency(int idx, int count) {
-			double result = Math.Max(0.0, 1.0 / count * idx);
-			return result;
-		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

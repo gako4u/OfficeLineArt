@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using VisGeek.Apps.OfficeLineArt.View;
 
-namespace VisGeek.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt.Model {
 	/// <summary>多角形
 	/// </summary>
 	public class Polygon {
 		// コンストラクター
-		internal Polygon(PolygonCollection polygons, int apexCount, Color color, double transparency) {
-			this.Polygons = polygons;
-			this.Color = color;
-			this.Transparency = transparency;
+		internal Polygon(Field field, int apexCount) {
+			this.Field = field;
 			this.Apexes = new ApexCollection(this, apexCount);
-			this.Lines = new LineCollection(this, this.Apexes);
 		}
 
 		// フィールド
@@ -21,15 +19,9 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// インデクサー
 
 		// プロパティ
-		public PolygonCollection Polygons { get; }
-
-		public LineCollection Lines { get; }
+		public Field Field { get; }
 
 		public ApexCollection Apexes { get; }
-
-		public Color Color { get; }
-
-		public double Transparency { get; }
 
 		// イベントハンドラー
 
@@ -49,13 +41,5 @@ namespace VisGeek.Apps.OfficeLineArt {
 				myApex.MoveTo(otherApex);
 			}
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }
