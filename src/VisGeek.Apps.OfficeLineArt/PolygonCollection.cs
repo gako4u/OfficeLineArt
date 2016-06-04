@@ -68,7 +68,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 		}
 
 		internal void RefrectPositions() {
-			this.Reverse().ForEach(porigon => porigon.Lines.RefrectPositions());
+			this.Reverse().ForEach(polygon => polygon.Lines.RefrectPositions());
 		}
 
 		private Color GetColor(Color initialColor, int idx, int count) {
