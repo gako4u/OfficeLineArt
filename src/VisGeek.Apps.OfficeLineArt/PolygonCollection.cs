@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace VisGeek.Apps.OfficeLineArt {
 	/// <summary>多角形のコレクション
 	/// </summary>
-	public class PoLygonCollection : IEnumerable<Polygon> {
+	public class PolygonCollection : IEnumerable<Polygon> {
 		// コンストラクター
-		internal PoLygonCollection(Field field, int apexCount, int count, Color color) {
+		internal PolygonCollection(Field field, int apexCount, int count, Color color) {
 			this.Field = field;
 
 			// 多角形を作成する。

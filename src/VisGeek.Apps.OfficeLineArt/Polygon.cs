@@ -8,7 +8,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 	/// </summary>
 	public class Polygon {
 		// コンストラクター
-		internal Polygon(PoLygonCollection polygons, int apexCount, Color color) {
+		internal Polygon(PolygonCollection polygons, int apexCount, Color color) {
 			this.Polygons = polygons;
 			this.Color = color;
 			this.Apexes = new ApexCollection(this, apexCount);
@@ -20,7 +20,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// インデクサー
 
 		// プロパティ
-		public PoLygonCollection Polygons { get; }
+		public PolygonCollection Polygons { get; }
 
 		public LineCollection Lines { get; }
 
