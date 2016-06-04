@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace VisGeek.Apps.OfficeLineArt {
 	/// <summary>頂点のコレクション
 	/// </summary>
-	public class ApexCollection : IEnumerable<Apex> {
+	public class ApexCollection : CollectionBase<Apex> {
 		// コンストラクター
 		internal ApexCollection(Polygon polygon, int apexCount) {
 			this.Polygon = polygon;
@@ -36,12 +36,8 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// イベントハンドラー
 
 		// メソッド
-		public IEnumerator<Apex> GetEnumerator() {
+		public override IEnumerator<Apex> GetEnumerator() {
 			return this.items.Cast<Apex>().GetEnumerator();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator() {
-			return this.GetEnumerator();
 		}
 
 		// スタティックコンストラクター

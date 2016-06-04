@@ -9,23 +9,30 @@ namespace VisGeek.Apps.OfficeLineArt {
 	/// </summary>
 	public abstract class Line {
 		// コンストラクター
-		protected Line(LineCollection lines, Apex begin, Apex end) {
-			this.Lines = lines;
+		protected Line(Polygon parent, Apex begin, Apex end) {
+			this.Parent = parent;
 			this.Begin = begin;
 			this.End = end;
 		}
 
-
-		// フィールド
-
-		// インデクサー
-
 		// プロパティ
-		public LineCollection Lines { get; }
+		public Polygon Parent { get; }
 
 		public Apex Begin { get; }
 
 		public Apex End { get; }
+
+		public Color Color {
+			get {
+				return this.Parent.Color;
+			}
+		}
+
+		public double Transparency {
+			get {
+				return this.Parent.Transparency;
+			}
+		}
 
 		// イベントハンドラー
 		protected internal abstract void RefrectFromBegin();

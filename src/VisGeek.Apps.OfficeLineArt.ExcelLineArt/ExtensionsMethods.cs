@@ -8,11 +8,6 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	public static class ExtensionsMethods {
-		public static void SetForeColor(this Excel.LineFormat lineFormat, Color color) {
-			lineFormat.ForeColor.SetRgb(color);
-			lineFormat.Transparency = (float)color.Transparency;
-		}
-
 		public static void SetRgb(this Excel.ColorFormat colorFormat, Color color) {
 			colorFormat.RGB = ExtensionsMethods.ToRGB(color);
 		}

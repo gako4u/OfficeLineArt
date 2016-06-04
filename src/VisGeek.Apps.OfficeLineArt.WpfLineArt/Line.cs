@@ -8,11 +8,11 @@ using System.Windows.Media;
 namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 	internal class Line : OfficeLineArt.Line {
 		// コンストラクター
-		internal Line(LineCollection lines, Apex begin, Apex end, Field field) : base(lines, begin, end) {
+		internal Line(Polygon parent, Apex begin, Apex end, Field field) : base(parent, begin, end) {
 			var beginPoint = new System.Windows.Point(begin.X.Value, begin.Y.Value);
 			var endPoint = new System.Windows.Point(end.X.Value, end.Y.Value);
 			this.shape = new System.Windows.Shapes.Line();
-			this.shape.Stroke = new SolidColorBrush(this.CreateColor(lines.Polygon.Color));
+			this.shape.Stroke = new SolidColorBrush(this.CreateColor());
 			field.Canvas.Children.Add(this.shape);
 		}
 
@@ -35,20 +35,12 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 		}
 
 		// メソッド
-		private System.Windows.Media.Color CreateColor(Color color) {
-			byte a = color.A;
-			byte r = color.R;
-			byte g = color.G;
-			byte b = color.B;
+		private System.Windows.Media.Color CreateColor() {
+			byte a = (byte)(255 - (this.Transparency * 255));
+			byte r = this.Color.R;
+			byte g = this.Color.G;
+			byte b = this.Color.B;
 			return System.Windows.Media.Color.FromArgb(a, r, g, b);
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

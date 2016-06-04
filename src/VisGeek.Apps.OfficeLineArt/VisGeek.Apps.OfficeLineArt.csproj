@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Apex.cs" />
     <Compile Include="ApexCollection.cs" />
+    <Compile Include="CollectionBase.cs" />
     <Compile Include="Color.cs" />
     <Compile Include="Direction.cs" />
     <Compile Include="ExtensionMethods.cs" />

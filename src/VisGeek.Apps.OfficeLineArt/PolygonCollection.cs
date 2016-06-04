@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace VisGeek.Apps.OfficeLineArt {
 	/// <summary>多角形のコレクション
 	/// </summary>
-	public class PolygonCollection : IEnumerable<Polygon> {
+	public class PolygonCollection : CollectionBase<Polygon> {
 		// コンストラクター
 		internal PolygonCollection(Field field, int apexCount, int count, Color color) {
 			this.Field = field;
@@ -18,7 +18,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 				Enumerable
 					.Range(0, count)
 					.Reverse()
-					.Select(idx => new Polygon(this, apexCount, this.GetColor(color, idx, count)))
+					.Select(idx => new Polygon(this, apexCount, color, this.GetTransparency(idx, count)))
 					.Reverse()
 					.ToArray();
 
@@ -43,12 +43,8 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// イベントハンドラー
 
 		// メソッド
-		public IEnumerator<Polygon> GetEnumerator() {
+		public override IEnumerator<Polygon> GetEnumerator() {
 			return items.Select(item => item).GetEnumerator();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator() {
-			return this.GetEnumerator();
 		}
 
 		internal void Move() {
@@ -71,20 +67,8 @@ namespace VisGeek.Apps.OfficeLineArt {
 			this.Reverse().ForEach(polygon => polygon.Lines.RefrectPositions());
 		}
 
-		private Color GetColor(Color initialColor, int idx, int count) {
-			Color result = initialColor;
-
-			switch (count) {
-				case 1:
-				default:
-					byte a = (byte)Math.Max(0, result.A - (result.A / count * idx));
-					byte r = result.R;
-					byte g = result.G;
-					byte b = result.B;
-					result = new Color(a, r, g, b);
-					break;
-			}
-
+		private double GetTransparency(int idx, int count) {
+			double result = Math.Max(0.0, 1.0 / count * idx);
 			return result;
 		}
 

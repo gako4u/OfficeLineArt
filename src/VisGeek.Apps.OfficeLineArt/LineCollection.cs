@@ -6,10 +6,10 @@ using System.Collections;
 namespace VisGeek.Apps.OfficeLineArt {
 	/// <summary>多角形を構成する線のコレクション
 	/// </summary>
-	public class LineCollection : IEnumerable<Line> {
+	public class LineCollection : CollectionBase<Line> {
 		// コンストラクター
-		internal LineCollection(Polygon polygon, ApexCollection apexes) {
-			this.Polygon = polygon;
+		internal LineCollection(Polygon parent, ApexCollection apexes) {
+			this.Parent = parent;
 
 			using (var e = apexes.GetEnumerator()) {
 				var lineList = new List<Line>(apexes.Count);
@@ -21,13 +21,13 @@ namespace VisGeek.Apps.OfficeLineArt {
 					Apex prev = e.Current;
 					while (e.MoveNext()) {
 						Apex current = e.Current;
-						var line = polygon.Polygons.LineArt.Invoke(() => polygon.Polygons.Field.CreateLine(this, prev, current));
+						var line = parent.Polygons.LineArt.Invoke(() => parent.Polygons.Field.CreateLine(parent, prev, current));
 						lineList.Add(line);
 						prev = current;
 					}
 
 					{
-						var line = polygon.Polygons.LineArt.Invoke(() => polygon.Polygons.Field.CreateLine(this, prev, first));
+						var line = parent.Polygons.LineArt.Invoke(() => parent.Polygons.Field.CreateLine(parent, prev, first));
 						lineList.Add(line);
 					}
 				}
@@ -42,7 +42,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// インデクサー
 
 		// プロパティ
-		public Polygon Polygon { get; }
+		public Polygon Parent { get; }
 
 		public int Count {
 			get {
@@ -53,12 +53,8 @@ namespace VisGeek.Apps.OfficeLineArt {
 		// イベントハンドラー
 
 		// メソッド
-		public IEnumerator<Line> GetEnumerator() {
+		public override IEnumerator<Line> GetEnumerator() {
 			return this.lines.Cast<Line>().GetEnumerator();
-		}
-
-		IEnumerator IEnumerable.GetEnumerator() {
-			return this.GetEnumerator();
 		}
 
 		public override string ToString() {

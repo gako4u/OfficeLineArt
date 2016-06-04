@@ -11,19 +11,15 @@ using System.Drawing;
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	internal class Line : OfficeLineArt.Line {
 		// コンストラクター
-		internal Line(LineCollection lines, Apex begin, Apex end) : base(lines, begin, end) {
-			this.Field = ((Field)lines.Polygon.Polygons.Field);
-			this.Color = lines.Polygon.Color;
-
-			this.shape = this.createShape();
+		internal Line(Polygon parent, Apex begin, Apex end) : base(parent, begin, end) {
+			this.Field = (Field)parent.Polygons.Field;
+			this.shape = this.CreateShape();
 		}
 
 		// フィールド
 		private Excel.Shape shape;
 
 		public Field Field { get; }
-
-		public Color Color { get; }
 
 		// インデクサー
 
@@ -36,14 +32,15 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 
 		protected override void RefrectFromEnd() {
 			this.shape.Delete();
-			this.shape = this.createShape();
+			this.shape = this.CreateShape();
 		}
 
 		// メソッド
-		private Excel.Shape createShape() {
+		private Excel.Shape CreateShape() {
 			var shapes = this.Field.Cell.Worksheet.Shapes;
 			var result = shapes.AddLine(this.Begin.X.FloatValue, this.Begin.Y.FloatValue, this.End.X.FloatValue, this.End.Y.FloatValue);
-			result.Line.SetForeColor(this.Color);
+			result.Line.ForeColor.SetRgb(this.Color);
+			result.Line.Transparency = (float)this.Transparency;
 			return result;
 		}
 

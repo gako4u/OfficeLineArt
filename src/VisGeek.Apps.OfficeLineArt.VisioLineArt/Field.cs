@@ -36,8 +36,8 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 			this.Page.Application.ActiveWindow.DeselectAll();
 		}
 
-		protected override OfficeLineArt.Line CreateLine(LineCollection lines, Apex begin, Apex end) {
-			return new Line(lines, begin, end, this);
+		protected override OfficeLineArt.Line CreateLine(Polygon polygon, Apex begin, Apex end) {
+			return new Line(polygon, begin, end, this);
 		}
 
 		protected override void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY) {
@@ -56,13 +56,5 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 			double result = cell.Result[VisUnitCodes.visNumber];
 			return result;
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

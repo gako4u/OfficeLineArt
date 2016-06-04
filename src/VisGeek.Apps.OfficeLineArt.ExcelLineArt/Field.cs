@@ -14,7 +14,9 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 
 			var wb = this.Excel.Workbooks.Add();
 			Worksheet ws = wb.Worksheets[1];
-			this.Cell = ws.Cells[2, "A"];
+			this.Cell = ws.Cells[1, "A"];
+			this.Cell.RowHeight *= 25;
+			this.Cell.ColumnWidth *= 10;
 		}
 
 		// フィールド
@@ -54,8 +56,8 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 			this.Cell.Select();
 		}
 
-		protected override OfficeLineArt.Line CreateLine(LineCollection lines, Apex begin, Apex end) {
-			return new Line(lines, begin, end);
+		protected override OfficeLineArt.Line CreateLine(Polygon polygon, Apex begin, Apex end) {
+			return new Line(polygon, begin, end);
 		}
 
 		protected override void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY) {
@@ -68,13 +70,5 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 			endX = beginX + width;
 			endY = beginY + height;
 		}
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }

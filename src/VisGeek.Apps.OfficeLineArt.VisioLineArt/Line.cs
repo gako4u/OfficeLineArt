@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class Line : OfficeLineArt.Line {
 		// コンストラクター
-		internal Line(LineCollection lines, Apex begin, Apex end, Field field) : base(lines, begin, end) {
+		internal Line(Polygon parent, Apex begin, Apex end, Field field) : base(parent, begin, end) {
 			this.shape = field.Page.DrawLine(begin.X.Value, begin.Y.Value, end.X.Value, end.Y.Value);
 			var cell = this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowLine, VisCellIndices.visLineColor);
 
-			var color = lines.Polygon.Color;
-			cell.FormulaU = string.Format("THEMEGUARD(RGB({0},{1},{2}))", color.R, color.G, color.B);
+			cell.FormulaU = string.Format("THEMEGUARD(RGB({0},{1},{2}))", this.Color.R, this.Color.G, this.Color.B);
 
 			// 透過度
-			double transparency = color.Transparency;
+			double transparency = this.Transparency;
 			string transparencyPercentage = string.Format("{0}%", transparency * 100);
 			this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowLine, VisCellIndices.visLineColorTrans).FormulaU = transparencyPercentage;
 			this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowGradientProperties, VisCellIndices.visLineGradientEnabled).FormulaU = "FALSE";

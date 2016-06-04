@@ -29,7 +29,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 			this.SetFieldDisabledHandler(() => this.IsEnabled = false);
 		}
 
-		protected internal abstract Line CreateLine(LineCollection lineCollection, Apex prev, Apex current);
+		protected internal abstract Line CreateLine(Polygon polygon, Apex prev, Apex current);
 
 		protected abstract void SetFieldDisabledHandler(Action disableFiledMethod);
 
@@ -46,13 +46,5 @@ namespace VisGeek.Apps.OfficeLineArt {
 		}
 
 		protected abstract void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY);
-
-		// スタティックコンストラクター
-
-		// スタティックフィールド
-
-		// スタティックプロパティ
-
-		// スタティックメソッド
 	}
 }
