@@ -26,9 +26,11 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 		// イベントハンドラー
 		protected override void Draw(double beginX, double beginY, double endX, double endY) {
 			if (this.shape == null) {
+				// 直線シェイプを作成する。
 				this.shape = this.Field.Page.DrawLine(beginX, beginY, endX, endY);
-				var cell = this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowLine, VisCellIndices.visLineColor);
 
+				// 色
+				var cell = this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowLine, VisCellIndices.visLineColor);
 				cell.FormulaU = string.Format("THEMEGUARD(RGB({0},{1},{2}))", this.Color.R, this.Color.G, this.Color.B);
 
 				// 透過度
@@ -37,6 +39,7 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 				this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowLine, VisCellIndices.visLineColorTrans).FormulaU = transparencyPercentage;
 				this.shape.GetCellSRC(VisSectionIndices.visSectionObject, VisRowIndices.visRowGradientProperties, VisCellIndices.visLineGradientEnabled).FormulaU = "FALSE";
 
+				// 選択を解除する。
 				this.shape.Application.ActiveWindow.DeselectAll();
 			}
 
