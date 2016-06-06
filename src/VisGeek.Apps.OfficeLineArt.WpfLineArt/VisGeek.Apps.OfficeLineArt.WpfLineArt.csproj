@@ -100,6 +100,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VisGeek.Apps.OfficeLineArt.Ribbon\VisGeek.Apps.OfficeLineArt.Ribbon.csproj">
+      <Project>{b80f8482-99c0-44ec-994a-9e38125f35e5}</Project>
+      <Name>VisGeek.Apps.OfficeLineArt.Ribbon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VisGeek.Apps.OfficeLineArt\VisGeek.Apps.OfficeLineArt.csproj">
       <Project>{d64d887b-39bc-4a09-b0c3-1627be346b1f}</Project>
       <Name>VisGeek.Apps.OfficeLineArt</Name>

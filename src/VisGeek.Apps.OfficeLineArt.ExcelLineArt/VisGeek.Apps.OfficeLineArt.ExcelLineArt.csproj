@@ -209,6 +209,10 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VisGeek.Apps.OfficeLineArt.Ribbon\VisGeek.Apps.OfficeLineArt.Ribbon.csproj">
+      <Project>{b80f8482-99c0-44ec-994a-9e38125f35e5}</Project>
+      <Name>VisGeek.Apps.OfficeLineArt.Ribbon</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VisGeek.Apps.OfficeLineArt\VisGeek.Apps.OfficeLineArt.csproj">
       <Project>{D64D887B-39BC-4A09-B0C3-1627BE346B1F}</Project>
       <Name>VisGeek.Apps.OfficeLineArt</Name>

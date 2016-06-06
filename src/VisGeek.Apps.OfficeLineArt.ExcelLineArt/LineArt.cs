@@ -10,14 +10,11 @@ using Forms = System.Windows.Forms;
 using Office = Microsoft.Office.Interop.Excel;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
-	internal class LineArt : OfficeLineArt.LineArt {
+	internal class LineArt : OfficeLineArt.Ribbon.LineArt {
 		// コンストラクター
-		internal LineArt(Office.Application application) : base() {
+		internal LineArt(Office.Application application) : base(Dispatcher.CurrentDispatcher) {
 			this.Application = application;
 		}
-
-		// フィールド
-		private readonly Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
 
 		// プロパティ
 		public Office.Application Application { get; }
@@ -38,12 +35,6 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 
 		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
 			return new Field(this, fieldModel, color);
-		}
-
-		protected override T Invoke<T>(Func<T> action) {
-			var invokeResult = this.dispatcher.BeginInvoke(action);
-			invokeResult.Wait();
-			return (T)invokeResult.Result;
 		}
 	}
 }

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisGeek.Apps.OfficeLineArt.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisGeek.Apps.OfficeLineArt.WpfLineArt", "VisGeek.Apps.OfficeLineArt.WpfLineArt\VisGeek.Apps.OfficeLineArt.WpfLineArt.csproj", "{BDE7DD59-1FD1-4B7A-9697-C36312B04D6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisGeek.Apps.OfficeLineArt.Ribbon", "VisGeek.Apps.OfficeLineArt.Ribbon\VisGeek.Apps.OfficeLineArt.Ribbon.csproj", "{B80F8482-99C0-44EC-994A-9E38125F35E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{BDE7DD59-1FD1-4B7A-9697-C36312B04D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDE7DD59-1FD1-4B7A-9697-C36312B04D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDE7DD59-1FD1-4B7A-9697-C36312B04D6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B80F8482-99C0-44EC-994A-9E38125F35E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B80F8482-99C0-44EC-994A-9E38125F35E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B80F8482-99C0-44EC-994A-9E38125F35E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B80F8482-99C0-44EC-994A-9E38125F35E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

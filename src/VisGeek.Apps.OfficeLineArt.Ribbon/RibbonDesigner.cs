@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
 
-namespace VisGeek.Apps.OfficeLineArt {
+namespace VisGeek.Apps.OfficeLineArt.Ribbon {
 	/// <summary>リボンの要素を作成して配置するクラスです。
 	/// </summary>
 	public class RibbonDesigner {

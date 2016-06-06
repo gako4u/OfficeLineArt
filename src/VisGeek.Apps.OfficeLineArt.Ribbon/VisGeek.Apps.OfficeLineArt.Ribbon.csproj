@@ -4,22 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D64D887B-39BC-4A09-B0C3-1627BE346B1F}</ProjectGuid>
+    <ProjectGuid>{B80F8482-99C0-44EC-994A-9E38125F35E5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VisGeek.Apps.OfficeLineArt</RootNamespace>
-    <AssemblyName>VisGeek.Apps.OfficeLineArt</AssemblyName>
+    <RootNamespace>VisGeek.Apps.OfficeLineArt.Ribbon</RootNamespace>
+    <AssemblyName>VisGeek.Apps.OfficeLineArt.Ribbon</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Tools, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Tools.Common.v4.0.Utilities, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -51,26 +50,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Apex.cs" />
-    <Compile Include="Model\ApexCollection.cs" />
-    <Compile Include="CollectionBase.cs" />
-    <Compile Include="Color.cs" />
-    <Compile Include="Model\Direction.cs" />
     <Compile Include="ExtensionMethods.cs" />
-    <Compile Include="Model\Field.cs" />
-    <Compile Include="View\Line.cs" />
     <Compile Include="LineArt.cs" />
-    <Compile Include="View\LineGroup.cs" />
-    <Compile Include="Point.cs" />
-    <Compile Include="Model\Polygon.cs" />
-    <Compile Include="Model\PolygonCollection.cs" />
-    <Compile Include="Model\PositionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rectangle.cs" />
-    <Compile Include="View\Field.cs" />
-    <Compile Include="View\LineGroupCollection.cs" />
+    <Compile Include="RibbonDesigner.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\VisGeek.Apps.OfficeLineArt\VisGeek.Apps.OfficeLineArt.csproj">
+      <Project>{d64d887b-39bc-4a09-b0c3-1627be346b1f}</Project>
+      <Name>VisGeek.Apps.OfficeLineArt</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

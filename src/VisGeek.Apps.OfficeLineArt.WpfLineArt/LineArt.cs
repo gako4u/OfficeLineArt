@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
-	internal class LineArt : OfficeLineArt.LineArt {
+	internal class LineArt : OfficeLineArt.Ribbon.LineArt {
 		// コンストラクター
-		internal LineArt(MainWindow mainWindow, Canvas canvas) : base() {
+		internal LineArt(MainWindow mainWindow, Canvas canvas) : base(mainWindow.Dispatcher) {
 			this.MainWindow = mainWindow;
 			this.Canvas = canvas;
 		}
@@ -35,12 +35,6 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 
 		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
 			return new Field(this, fieldModel, color);
-		}
-
-		protected override T Invoke<T>(Func<T> action) {
-			var invokeResult = this.MainWindow.Dispatcher.BeginInvoke(action);
-			invokeResult.Wait();
-			return (T)invokeResult.Result;
 		}
 	}
 }

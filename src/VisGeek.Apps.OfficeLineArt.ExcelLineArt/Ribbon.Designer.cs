@@ -1,4 +1,6 @@
-﻿namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
+﻿using VisGeek.Apps.OfficeLineArt.Ribbon;
+
+namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	partial class Ribbon : Microsoft.Office.Tools.Ribbon.RibbonBase {
 		/// <summary>
 		/// 必要なデザイナー変数です。
