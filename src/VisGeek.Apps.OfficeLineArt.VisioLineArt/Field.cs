@@ -31,8 +31,8 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 		// メソッド
 		protected override void DisposeInternal() {
 			this.Visio.BeforeWindowClosed -= this.Visio_BeforeWindowClosed;
-			this.Page.Document.BeforeDocumentClose -= Document_BeforeDocumentClose;
-			this.Page.BeforePageDelete -= Page_BeforePageDelete;
+			this.Page.Document.BeforeDocumentClose -= this.Document_BeforeDocumentClose;
+			this.Page.BeforePageDelete -= this.Page_BeforePageDelete;
 		}
 
 		private void Visio_BeforeWindowClosed(Window Window) {
