@@ -24,10 +24,10 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 		public Page Page { get; }
 
 		// メソッド
-		protected override void SetFieldDisabledHandler(Action disableFiledMethod) {
-			this.Visio.BeforeWindowClosed += v => disableFiledMethod();
-			this.Page.Document.BeforeDocumentClose += d => disableFiledMethod();
-			this.Page.BeforePageDelete += p => disableFiledMethod();
+		protected override void SetFieldDisabledHandler(Action disableFieldMethod) {
+			this.Visio.BeforeWindowClosed += v => disableFieldMethod();
+			this.Page.Document.BeforeDocumentClose += d => disableFieldMethod();
+			this.Page.BeforePageDelete += p => disableFieldMethod();
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {

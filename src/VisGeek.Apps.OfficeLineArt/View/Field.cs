@@ -31,7 +31,7 @@ namespace VisGeek.Apps.OfficeLineArt.View {
 			this.SetFieldDisabledHandler(() => this.IsEnabled = false);
 		}
 
-		protected abstract void SetFieldDisabledHandler(Action disableFiledMethod);
+		protected abstract void SetFieldDisabledHandler(Action disableFieldMethod);
 
 		protected internal abstract Line CreateLine(LineGroup polygon, Apex begin, Apex end);
 

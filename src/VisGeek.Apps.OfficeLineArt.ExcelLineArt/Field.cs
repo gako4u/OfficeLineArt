@@ -22,7 +22,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		}
 
 		// フィールド
-		private System.Action disableFiledMethod;
+		private System.Action disableFieldMethod;
 
 		// プロパティ
 		public Application Excel { get; }
@@ -30,24 +30,24 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		public Range Cell { get; }
 
 		// メソッド
-		protected override void SetFieldDisabledHandler(System.Action disableFiledMethod) {
-			this.disableFiledMethod = disableFiledMethod;
+		protected override void SetFieldDisabledHandler(System.Action disableFieldMethod) {
+			this.disableFieldMethod = disableFieldMethod;
 
 			this.Excel.WorkbookBeforeClose += this.Excel_WorkbookBeforeClose;
 			this.Excel.SheetBeforeDelete += this.Excel_SheetBeforeDelete;
-			this.Cell.Worksheet.BeforeDelete += () => disableFiledMethod();
+			this.Cell.Worksheet.BeforeDelete += () => this.disableFieldMethod();
 		}
 
 		private void Excel_SheetBeforeDelete(object Sh) {
-			if (Sh is Worksheet) {
-				if ((Worksheet)Sh == this.Cell.Worksheet) {
-					this.disableFiledMethod();
-				}
+			if ((Worksheet)Sh == this.Cell.Worksheet) {
+				this.disableFieldMethod();
 			}
 		}
 
 		private void Excel_WorkbookBeforeClose(Workbook Wb, ref bool Cancel) {
-			this.disableFiledMethod();
+			if (Wb == this.Cell.Worksheet.Parent) {
+				this.disableFieldMethod();
+			}
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {

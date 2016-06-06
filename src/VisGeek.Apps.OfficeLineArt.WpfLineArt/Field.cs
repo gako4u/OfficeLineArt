@@ -21,8 +21,8 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 		public Canvas Canvas { get; }
 
 		// メソッド
-		protected override void SetFieldDisabledHandler(Action disableFiledMethod) {
-			this.MainWindow.Closing += (s, e) => disableFiledMethod();
+		protected override void SetFieldDisabledHandler(Action disableFieldMethod) {
+			this.MainWindow.Closing += (s, e) => disableFieldMethod();
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {
