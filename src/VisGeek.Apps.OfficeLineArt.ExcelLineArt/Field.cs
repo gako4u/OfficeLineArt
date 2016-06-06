@@ -33,13 +33,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 
 		public Range Cell { get; }
 
-		// メソッド
-		protected override void DisposeInternal() {
-			this.Excel.WorkbookBeforeClose -= this.Excel_WorkbookBeforeClose;
-			this.Excel.SheetBeforeDelete -= this.Excel_SheetBeforeDelete;
-			this.Cell.Worksheet.BeforeDelete -= this.Worksheet_BeforeDelete;
-		}
-
+		// イベントハンドラー
 		private void Excel_SheetBeforeDelete(object Sh) {
 			if ((Worksheet)Sh == this.Cell.Worksheet) {
 				this.Disable();
@@ -54,6 +48,13 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 
 		private void Worksheet_BeforeDelete() {
 			this.Disable();
+		}
+
+		// メソッド
+		protected override void DisposeInternal() {
+			this.Excel.WorkbookBeforeClose -= this.Excel_WorkbookBeforeClose;
+			this.Excel.SheetBeforeDelete -= this.Excel_SheetBeforeDelete;
+			this.Cell.Worksheet.BeforeDelete -= this.Worksheet_BeforeDelete;
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {

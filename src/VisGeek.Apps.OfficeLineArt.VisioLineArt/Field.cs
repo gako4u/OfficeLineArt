@@ -28,13 +28,7 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 
 		public Page Page { get; }
 
-		// メソッド
-		protected override void DisposeInternal() {
-			this.Visio.BeforeWindowClosed -= this.Visio_BeforeWindowClosed;
-			this.Page.Document.BeforeDocumentClose -= this.Document_BeforeDocumentClose;
-			this.Page.BeforePageDelete -= this.Page_BeforePageDelete;
-		}
-
+		// イベントハンドラー
 		private void Visio_BeforeWindowClosed(Window Window) {
 			this.Disable();
 		}
@@ -45,6 +39,14 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 
 		private void Page_BeforePageDelete(Page Page) {
 			this.Disable();
+		}
+
+
+		// メソッド
+		protected override void DisposeInternal() {
+			this.Visio.BeforeWindowClosed -= this.Visio_BeforeWindowClosed;
+			this.Page.Document.BeforeDocumentClose -= this.Document_BeforeDocumentClose;
+			this.Page.BeforePageDelete -= this.Page_BeforePageDelete;
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {

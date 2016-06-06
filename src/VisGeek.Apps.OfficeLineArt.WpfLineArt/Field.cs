@@ -24,13 +24,14 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 
 		public Canvas Canvas { get; }
 
+		// イベントハンドラー
+		private void MainWindow_Closing(object sender, CancelEventArgs e) {
+			this.Disable();
+		}
+
 		// メソッド
 		protected override void DisposeInternal() {
 			this.MainWindow.Closing -= this.MainWindow_Closing;
-		}
-
-		private void MainWindow_Closing(object sender, CancelEventArgs e) {
-			this.Disable();
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {
