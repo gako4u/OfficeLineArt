@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Office = Microsoft.Office.Interop.Excel;
-using Forms = System.Windows.Forms;
+using System.Windows.Threading;
 using VisGeek.Apps.OfficeLineArt.Model;
 using VisGeek.Apps.OfficeLineArt.View;
+using Forms = System.Windows.Forms;
+using Office = Microsoft.Office.Interop.Excel;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	internal class LineArt : OfficeLineArt.LineArt {
@@ -16,8 +17,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		}
 
 		// フィールド
-
-		// インデクサー
+		private readonly Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
 
 		// プロパティ
 		public Office.Application Application { get; }
@@ -38,6 +38,12 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 
 		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
 			return new Field(this, fieldModel, color);
+		}
+
+		protected override T Invoke<T>(Func<T> action) {
+			var invokeResult = this.dispatcher.BeginInvoke(action);
+			invokeResult.Wait();
+			return (T)invokeResult.Result;
 		}
 	}
 }

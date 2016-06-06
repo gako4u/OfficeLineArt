@@ -93,9 +93,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 			);
 		}
 
-		protected virtual T Invoke<T>(Func<T> action) {
-			return action();
-		}
+		protected abstract T Invoke<T>(Func<T> action);
 
 		private bool trySetRunning() {
 			bool result = false;

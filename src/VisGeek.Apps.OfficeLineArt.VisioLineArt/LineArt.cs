@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Office = Microsoft.Office.Interop.Visio;
+using System.Windows.Threading;
 using Forms = System.Windows.Forms;
+using Office = Microsoft.Office.Interop.Visio;
 
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class LineArt : OfficeLineArt.LineArt {
@@ -14,8 +15,7 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 		}
 
 		// フィールド
-
-		// インデクサー
+		private readonly Dispatcher dispatcher = Dispatcher.CurrentDispatcher;
 
 		// プロパティ
 		public Office.Application Application { get; }
@@ -36,6 +36,12 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 
 		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
 			return new Field(this, fieldModel, color);
+		}
+
+		protected override T Invoke<T>(Func<T> action) {
+			var invokeResult = this.dispatcher.BeginInvoke(action);
+			invokeResult.Wait();
+			return (T)invokeResult.Result;
 		}
 	}
 }

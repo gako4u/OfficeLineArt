@@ -47,8 +47,10 @@ namespace VisGeek.Apps.OfficeLineArt.View {
 		protected abstract void GetRectanglePosition(out double beginX, out double beginY, out double endX, out double endY);
 
 		internal void Draw() {
-			var screen = this.GetRectangle();
-			this.LineGroups.ForEach(lineGroup => lineGroup.Draw(screen));
+			if (this.IsEnabled) {
+				var screen = this.GetRectangle();
+				this.LineGroups.ForEach(lineGroup => lineGroup.Draw(screen));
+			}
 		}
 
 		public void Dispose() {
