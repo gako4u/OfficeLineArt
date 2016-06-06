@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,12 @@ using VisGeek.Apps.OfficeLineArt.View;
 namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 	internal class Field : OfficeLineArt.View.Field {
 		// コンストラクター
-		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color) : base(lineArt, fieldModel, color) {
+		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color)
+			: base(lineArt, fieldModel, color) {
+
 			this.MainWindow = ((LineArt)lineArt).MainWindow;
 			this.Canvas = ((LineArt)lineArt).Canvas;
+			this.MainWindow.Closing += this.MainWindow_Closing;
 		}
 
 		// プロパティ
@@ -21,8 +25,12 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 		public Canvas Canvas { get; }
 
 		// メソッド
-		protected override void SetFieldDisabledHandler(Action disableFieldMethod) {
-			this.MainWindow.Closing += (s, e) => disableFieldMethod();
+		protected override void DisposeInternal() {
+			this.MainWindow.Closing -= this.MainWindow_Closing;
+		}
+
+		private void MainWindow_Closing(object sender, CancelEventArgs e) {
+			this.Disable();
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {

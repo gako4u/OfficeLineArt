@@ -11,18 +11,22 @@ using VisGeek.Apps.OfficeLineArt.View;
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	internal class Field : OfficeLineArt.View.Field {
 		// コンストラクター
-		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color) : base(lineArt, fieldModel, color) {
-			this.Excel = ((LineArt)lineArt).Application;
+		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color)
+			: base(lineArt, fieldModel, color) {
+
+			this.Excel = ((LineArt)this.LineArt).Application;
 
 			var wb = this.Excel.Workbooks.Add();
 			Worksheet ws = wb.Worksheets[1];
 			this.Cell = ws.Cells[1, "A"];
 			this.Cell.RowHeight *= 25;
 			this.Cell.ColumnWidth *= 10;
-		}
 
-		// フィールド
-		private System.Action disableFieldMethod;
+			// イベントハンドラー
+			this.Excel.WorkbookBeforeClose += this.Excel_WorkbookBeforeClose;
+			this.Excel.SheetBeforeDelete += this.Excel_SheetBeforeDelete;
+			this.Cell.Worksheet.BeforeDelete += this.Worksheet_BeforeDelete;
+		}
 
 		// プロパティ
 		public Application Excel { get; }
@@ -30,24 +34,26 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		public Range Cell { get; }
 
 		// メソッド
-		protected override void SetFieldDisabledHandler(System.Action disableFieldMethod) {
-			this.disableFieldMethod = disableFieldMethod;
-
-			this.Excel.WorkbookBeforeClose += this.Excel_WorkbookBeforeClose;
-			this.Excel.SheetBeforeDelete += this.Excel_SheetBeforeDelete;
-			this.Cell.Worksheet.BeforeDelete += () => this.disableFieldMethod();
+		protected override void DisposeInternal() {
+			this.Excel.WorkbookBeforeClose -= this.Excel_WorkbookBeforeClose;
+			this.Excel.SheetBeforeDelete -= this.Excel_SheetBeforeDelete;
+			this.Cell.Worksheet.BeforeDelete -= this.Worksheet_BeforeDelete;
 		}
 
 		private void Excel_SheetBeforeDelete(object Sh) {
 			if ((Worksheet)Sh == this.Cell.Worksheet) {
-				this.disableFieldMethod();
+				this.Disable();
 			}
 		}
 
 		private void Excel_WorkbookBeforeClose(Workbook Wb, ref bool Cancel) {
 			if (Wb == this.Cell.Worksheet.Parent) {
-				this.disableFieldMethod();
+				this.Disable();
 			}
+		}
+
+		private void Worksheet_BeforeDelete() {
+			this.Disable();
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {

@@ -6,7 +6,7 @@ using VisGeek.Apps.OfficeLineArt.Model;
 namespace VisGeek.Apps.OfficeLineArt.View {
 	/// <summary>ラインアートを描画するフィールド
 	/// </summary>
-	public abstract class Field {
+	public abstract class Field : IDisposable {
 		// コンストラクター
 		protected Field(LineArt lineArt, Model.Field fieldModel, Color color) {
 			this.LineArt = lineArt;
@@ -14,6 +14,9 @@ namespace VisGeek.Apps.OfficeLineArt.View {
 			this.LineGroups = new LineGroupCollection(this, color, fieldModel.Polygons);
 			this.IsEnabled = true;
 		}
+
+		// フィールド
+		private bool isDisposed = false;
 
 		// プロパティ
 		public LineArt LineArt { get; }
@@ -24,14 +27,10 @@ namespace VisGeek.Apps.OfficeLineArt.View {
 
 		public bool IsEnabled { get; private set; }
 
-		//	// イベントハンドラー
-
 		// メソッド
-		internal void SetHandler() {
-			this.SetFieldDisabledHandler(() => this.IsEnabled = false);
+		protected void Disable() {
+			this.IsEnabled = false;
 		}
-
-		protected abstract void SetFieldDisabledHandler(Action disableFieldMethod);
 
 		protected internal abstract Line CreateLine(LineGroup polygon, Apex begin, Apex end);
 
@@ -51,5 +50,14 @@ namespace VisGeek.Apps.OfficeLineArt.View {
 			var screen = this.GetRectangle();
 			this.LineGroups.ForEach(lineGroup => lineGroup.Draw(screen));
 		}
+
+		public void Dispose() {
+			if (!this.isDisposed) {
+				this.DisposeInternal();
+				this.isDisposed = true;
+			}
+		}
+
+		protected abstract void DisposeInternal();
 	}
 }

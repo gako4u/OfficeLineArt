@@ -10,13 +10,18 @@ using VisGeek.Apps.OfficeLineArt.View;
 
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class Field : OfficeLineArt.View.Field {
+
 		// コンストラクター
-		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color) : base(lineArt, fieldModel, color) {
+		internal Field(OfficeLineArt.LineArt lineArt, Model.Field fieldModel, Color color)
+			: base(lineArt, fieldModel, color) {
+
 			this.Visio = ((LineArt)lineArt).Application;
 			this.Page = this.Visio.Documents.Add("").Pages[1];
-		}
 
-		// フィールド
+			this.Visio.BeforeWindowClosed += this.Visio_BeforeWindowClosed;
+			this.Page.Document.BeforeDocumentClose += Document_BeforeDocumentClose;
+			this.Page.BeforePageDelete += Page_BeforePageDelete;
+		}
 
 		// プロパティ
 		public Application Visio { get; }
@@ -24,10 +29,22 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 		public Page Page { get; }
 
 		// メソッド
-		protected override void SetFieldDisabledHandler(Action disableFieldMethod) {
-			this.Visio.BeforeWindowClosed += v => disableFieldMethod();
-			this.Page.Document.BeforeDocumentClose += d => disableFieldMethod();
-			this.Page.BeforePageDelete += p => disableFieldMethod();
+		protected override void DisposeInternal() {
+			this.Visio.BeforeWindowClosed -= this.Visio_BeforeWindowClosed;
+			this.Page.Document.BeforeDocumentClose -= Document_BeforeDocumentClose;
+			this.Page.BeforePageDelete -= Page_BeforePageDelete;
+		}
+
+		private void Visio_BeforeWindowClosed(Window Window) {
+			this.Disable();
+		}
+
+		private void Document_BeforeDocumentClose(Document doc) {
+			this.Disable();
+		}
+
+		private void Page_BeforePageDelete(Page Page) {
+			this.Disable();
 		}
 
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {

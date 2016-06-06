@@ -21,19 +21,9 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 		// プロパティ
 		public bool IsRunning {
-			get {
-				lock (this.lockObj) {
-					return this._isRunning;
-				}
-			}
-			set {
-				lock (this.lockObj) {
-					this._isRunning = value;
-				}
-			}
+			get { lock (this.lockObj) { return this._isRunning; } }
+			set { lock (this.lockObj) { this._isRunning = value; } }
 		}
-
-		public bool IsEnabled { get; private set; }
 
 		public bool CancellationRequest { get; private set; }
 
@@ -49,43 +39,42 @@ namespace VisGeek.Apps.OfficeLineArt {
 				this.CancellationRequest = false;
 				var fieldModel = new Model.Field(this, 640.0, 480.0, apexCount, afterImageCount);
 
-				var fieldView = this.CreateField(fieldModel, new Color(255, 0, 0));
-				fieldView.SetHandler();
+				using (var fieldView = this.CreateField(fieldModel, new Color(255, 0, 0))) {
+					long count = 0;
+					DateTime nextFrame = DateTime.Now.Add(LineArt.FrameInterval);
+					while (true) {
+						count++;
 
-				long count = 0;
-				DateTime nextFrame = DateTime.Now.Add(LineArt.FrameInterval);
-				while (true) {
-					count++;
+						if (this.CancellationRequest) {
+							break;
 
-					if (this.CancellationRequest) {
-						break;
+						} else if (!fieldView.IsEnabled) {
+							break;
 
-					} else if (!fieldView.IsEnabled) {
-						break;
+						} else {
+							fieldModel.Polygons.Move();
 
-					} else {
-						fieldModel.Polygons.Move();
-
-						DateTime now = DateTime.Now;
-						if (now < nextFrame) {
-							this.Invoke(() => {
-								fieldView.Draw();
-								this.Draw();
-							});
-
-							now = DateTime.Now;
+							DateTime now = DateTime.Now;
 							if (now < nextFrame) {
-								this.Sleep(nextFrame - now);
+								this.Invoke(() => {
+									fieldView.Draw();
+									this.Draw();
+								});
+
+								now = DateTime.Now;
+								if (now < nextFrame) {
+									this.Sleep(nextFrame - now);
+								}
+							} else if (count % 100 == 0) {
+								//this.Draw();
 							}
-						} else if (count % 100 == 0) {
-							//this.Draw();
+
+							nextFrame += LineArt.FrameInterval;
 						}
-
-						nextFrame += LineArt.FrameInterval;
 					}
-				}
 
-				this.IsRunning = false;
+					this.IsRunning = false;
+				}
 			}
 		}
 
