@@ -14,21 +14,12 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 			this.Canvas = canvas;
 		}
 
-		// フィールド
-
-		// インデクサー
-
 		// プロパティ
 		public MainWindow MainWindow { get; }
 
 		public Canvas Canvas { get; }
 
-		// イベントハンドラー
-
 		// メソッド
-		protected override void Draw() {
-		}
-
 		protected override void Sleep(TimeSpan timeSpan) {
 			Thread.Sleep(timeSpan);
 		}

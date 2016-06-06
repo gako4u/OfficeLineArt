@@ -17,13 +17,7 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 		// プロパティ
 		public Office.Application Application { get; }
 
-		// イベントハンドラー
-
 		// メソッド
-		protected override void Draw() {
-			Forms.Application.DoEvents();
-		}
-
 		protected override void Sleep(TimeSpan timeSpan) {
 			var dateTime = DateTime.Now + timeSpan;
 			while (DateTime.Now < dateTime) {

@@ -17,8 +17,6 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 		private bool _isRunning;
 
-		// インデクサー
-
 		// プロパティ
 		public bool IsRunning {
 			get { lock (this.lockObj) { return this._isRunning; } }
@@ -26,8 +24,6 @@ namespace VisGeek.Apps.OfficeLineArt {
 		}
 
 		public bool CancellationRequest { get; private set; }
-
-		// イベントハンドラー
 
 		// メソッド
 		public void Cancel() {
@@ -58,7 +54,6 @@ namespace VisGeek.Apps.OfficeLineArt {
 							if (now < nextFrame) {
 								this.Invoke(() => {
 									fieldView.Draw();
-									this.Draw();
 								});
 
 								now = DateTime.Now;
@@ -79,8 +74,6 @@ namespace VisGeek.Apps.OfficeLineArt {
 		}
 
 		protected abstract View.Field CreateField(Field fieldModel, Color color);
-
-		protected abstract void Draw();
 
 		protected abstract void Sleep(TimeSpan timeSpan);
 
