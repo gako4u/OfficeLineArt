@@ -10,7 +10,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		public Ribbon()
 			: base(Globals.Factory.GetRibbonFactory()) {
 			this.InitializeComponent();
-			new RibbonDesigner(this, () => new LineArt(this.Application));
+			new RibbonDesigner(this, () => new LineArt(this.Application), false);
 		}
 
 		/// <summary> 
