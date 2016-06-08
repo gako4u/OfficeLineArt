@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VisGeek.Apps.OfficeLineArt.Model;
 using VisGeek.Apps.OfficeLineArt.View;
+using Forms = System.Windows.Forms;
 
 namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 	internal class Line : OfficeLineArt.View.Line {

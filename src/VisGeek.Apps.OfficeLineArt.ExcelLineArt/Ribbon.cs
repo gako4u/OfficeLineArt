@@ -9,12 +9,5 @@ using Office = Microsoft.Office.Interop.Excel;
 
 namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 	public partial class Ribbon {
-		// プロパティ
-		public Office.Application Application {
-			get {
-				return Globals.ThisAddIn.Application;
-			}
-		}
 	}
 }
-

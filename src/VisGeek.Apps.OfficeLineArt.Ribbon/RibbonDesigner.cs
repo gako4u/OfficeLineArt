@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
+using System.Threading;
 
 namespace VisGeek.Apps.OfficeLineArt.Ribbon {
 	/// <summary>リボンの要素を作成して配置するクラスです。
 	/// </summary>
-	public class RibbonDesigner {
+	public abstract class RibbonDesigner {
 		// コンストラクター
-		public RibbonDesigner(RibbonBase ribbon, Func<LineArt> lineArtCreator, bool background) {
+		protected RibbonDesigner(RibbonBase ribbon, bool background) {
 			try {
-				this.lineArtCreator = lineArtCreator;
-				this.lineArt = null;
 				this.background = background;
 
 				using (new RibbonCoponentSuspender(ribbon)) {
@@ -53,42 +52,52 @@ namespace VisGeek.Apps.OfficeLineArt.Ribbon {
 		}
 
 		// フィールド
-		private readonly Func<LineArt> lineArtCreator;
-		private LineArt lineArt;
 		private readonly bool background;
 
 		private readonly RibbonDropDown apexCountDropDown;
 		private readonly RibbonDropDown afterImageCountDropDown;
 		private readonly RibbonToggleButton toggleButton;
 
+		// プロパティ
+		protected bool ApplicationClosed { get; set; } = false;
+
+		protected CancelableTask Task { get; private set; } = null;
+
 		// イベントハンドラー
 		private async void toggleButton_Click(object sender, RibbonControlEventArgs e) {
 			try {
-				if (this.lineArt == null) {
-					this.lineArt = this.lineArtCreator();
-				}
+				if (this.Task == null || this.Task.IsCompleted) {
+					var lineArt = this.CreateLineArt();
 
-				if (this.toggleButton.Checked) {
-					this.apexCountDropDown.Enabled = false;
-					this.afterImageCountDropDown.Enabled = false;
+					try {
+						this.apexCountDropDown.Enabled = false;
+						this.afterImageCountDropDown.Enabled = false;
 
-					int apexCount = (int)this.apexCountDropDown.SelectedItem.Tag;
-					int afterImageCount = (int)this.afterImageCountDropDown.SelectedItem.Tag;
+						int apexCount = (int)this.apexCountDropDown.SelectedItem.Tag;
+						int afterImageCount = (int)this.afterImageCountDropDown.SelectedItem.Tag;
 
-					if (background) {
-						await Task.Factory.StartNew(() => this.lineArt.Start(apexCount, afterImageCount));
-					} else {
-						this.lineArt.Start(apexCount, afterImageCount);
+						this.Task = new CancelableTask(canceler => lineArt.Start(apexCount, afterImageCount, canceler));
+						if (background) {
+							this.Task.Start();
+							await this.Task;
+						} else {
+							this.Task.RunSynchronously();
+						}
+
+					} finally {
+						this.Task?.Dispose();
+						this.Task = null;
+						if (!this.ApplicationClosed) {
+							this.apexCountDropDown.Enabled = true;
+							this.afterImageCountDropDown.Enabled = true;
+							this.toggleButton.Enabled = true;
+							this.toggleButton.Checked = false;
+						}
 					}
 
-					this.apexCountDropDown.Enabled = true;
-					this.afterImageCountDropDown.Enabled = true;
-					this.toggleButton.Enabled = true;
-					this.toggleButton.Checked = false;
-
 				} else {
+					this.Task.Cancel();
 					this.toggleButton.Enabled = false;
-					this.lineArt.Cancel();
 				}
 
 			} catch (Exception ex) {
@@ -112,33 +121,6 @@ namespace VisGeek.Apps.OfficeLineArt.Ribbon {
 			return result;
 		}
 
-		// クラス
-		/// <summary>リボンの要素の描画を一時的に止めるクラス。
-		/// </summary>
-		private class RibbonCoponentSuspender : IDisposable {
-			public RibbonCoponentSuspender(RibbonBase ribbon) {
-				ribbon.SuspendLayout();
-				this.action =
-					() => {
-						ribbon.ResumeLayout(false);
-						ribbon.PerformLayout();
-					};
-			}
-
-			public RibbonCoponentSuspender(RibbonComponent ribbonComponent) {
-				ribbonComponent.SuspendLayout();
-				this.action =
-					() => {
-						ribbonComponent.ResumeLayout(false);
-						ribbonComponent.PerformLayout();
-					};
-			}
-
-			private readonly Action action;
-
-			public void Dispose() {
-				this.action();
-			}
-		}
+		protected abstract LineArt CreateLineArt();
 	}
 }

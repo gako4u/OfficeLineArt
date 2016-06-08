@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +15,6 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 
 			this.MainWindow = ((LineArt)lineArt).MainWindow;
 			this.Canvas = ((LineArt)lineArt).Canvas;
-			this.MainWindow.Closing += this.MainWindow_Closing;
 		}
 
 		// プロパティ
@@ -24,16 +22,7 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 
 		public Canvas Canvas { get; }
 
-		// イベントハンドラー
-		private void MainWindow_Closing(object sender, CancelEventArgs e) {
-			this.Disable();
-		}
-
 		// メソッド
-		protected override void DisposeInternal() {
-			this.MainWindow.Closing -= this.MainWindow_Closing;
-		}
-
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {
 			return new Line(polygon, begin, end);
 		}

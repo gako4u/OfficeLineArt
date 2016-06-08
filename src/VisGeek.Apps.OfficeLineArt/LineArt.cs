@@ -9,73 +9,40 @@ namespace VisGeek.Apps.OfficeLineArt {
 	public abstract class LineArt {
 		// コンストラクター
 		protected LineArt() {
-			this.IsRunning = false;
 		}
-
-		// フィールド
-		private readonly object lockObj = new object();
-
-		private bool _isRunning;
-
-		// プロパティ
-		public bool IsRunning {
-			get { lock (this.lockObj) { return this._isRunning; } }
-			set { lock (this.lockObj) { this._isRunning = value; } }
-		}
-
-		public bool CancellationRequest { get; private set; }
 
 		// メソッド
-		public void Cancel() {
-			this.CancellationRequest = true;
-		}
+		public void Start(int apexCount, int afterImageCount, CancellationToken canceler) {
+			var fieldModel = new Model.Field(this, 640.0, 480.0, apexCount, afterImageCount);
 
-		public void Start(int apexCount, int afterImageCount) {
-			if (this.trySetRunning()) {
-				this.CancellationRequest = false;
-				var fieldModel = new Model.Field(this, 640.0, 480.0, apexCount, afterImageCount);
+			var fieldView = this.CreateField(fieldModel, new Color(255, 0, 0));
+			DateTime nextFrame = DateTime.Now.Add(LineArt.FrameInterval);
 
-				using (var fieldView = this.CreateField(fieldModel, new Color(255, 0, 0))) {
-					long count = 0;
-					DateTime nextFrame = DateTime.Now.Add(LineArt.FrameInterval);
-					while (true) {
-						count++;
-
-						if (this.CancellationRequest) {
-							break;
-
-						} else if (!fieldView.IsEnabled) {
-							break;
-
-						} else {
-							fieldModel.Polygons.Move();
-
-							DateTime now = DateTime.Now;
-							if (now < nextFrame) {
-								this.Invoke(() => {
-									fieldView.Draw();
-								});
-
-								now = DateTime.Now;
-								if (now < nextFrame) {
-									this.Sleep(nextFrame - now);
-								}
-							} else if (count % 100 == 0) {
-								//this.Draw();
-							}
-
-							nextFrame += LineArt.FrameInterval;
+			while (!canceler.IsCancellationRequested) {
+				DateTime now = DateTime.Now;
+				if (now < nextFrame) {
+					// 描画
+					this.Invoke(() => {
+						if (!canceler.IsCancellationRequested) {
+							fieldView.Draw();
+							this.DoEvents();
 						}
-					}
+					});
 
-					this.IsRunning = false;
+					now = DateTime.Now;
+					if (now < nextFrame) {
+						Thread.Sleep(nextFrame - now);
+					}
 				}
+
+				nextFrame += LineArt.FrameInterval;
+
+				// 処理
+				fieldModel.Polygons.Move();
 			}
 		}
 
 		protected abstract View.Field CreateField(Field fieldModel, Color color);
-
-		protected abstract void Sleep(TimeSpan timeSpan);
 
 		private void Invoke(Action action) {
 			this.Invoke<object>(
@@ -88,17 +55,7 @@ namespace VisGeek.Apps.OfficeLineArt {
 
 		protected abstract T Invoke<T>(Func<T> action);
 
-		private bool trySetRunning() {
-			bool result = false;
-
-			lock (this.lockObj) {
-				if (!this.IsRunning) {
-					this.IsRunning = true;
-					result = true;
-				}
-			}
-
-			return result;
+		protected virtual void DoEvents() {
 		}
 
 		// スタティックコンストラクター

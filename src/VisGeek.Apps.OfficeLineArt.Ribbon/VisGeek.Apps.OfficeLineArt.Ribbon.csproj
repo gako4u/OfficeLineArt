@@ -53,6 +53,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="LineArt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RibbonCoponentSuspender.cs" />
     <Compile Include="RibbonDesigner.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		public Ribbon()
 			: base(Globals.Factory.GetRibbonFactory()) {
 			this.InitializeComponent();
-			new RibbonDesigner(this, () => new LineArt(this.Application), false);
+			new RibbonDesigner(this);
 		}
 
 		/// <summary> 
@@ -18,8 +18,8 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 		/// </summary>
 		/// <param name="disposing">マネージ リソースを破棄する場合は true を指定し、その他の場合は false を指定します。</param>
 		protected override void Dispose(bool disposing) {
-			if (disposing && (components != null)) {
-				components.Dispose();
+			if (disposing && (this.components != null)) {
+				this.components.Dispose();
 			}
 			base.Dispose(disposing);
 		}

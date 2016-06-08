@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
-using Excel = Microsoft.Office.Interop.Excel;
 using VisGeek.Apps.OfficeLineArt.Model;
 using VisGeek.Apps.OfficeLineArt.View;
 
@@ -21,11 +20,6 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 			this.Cell = ws.Cells[1, "A"];
 			this.Cell.RowHeight *= 25;
 			this.Cell.ColumnWidth *= 10;
-
-			// イベントハンドラー
-			this.Excel.WorkbookBeforeClose += this.Excel_WorkbookBeforeClose;
-			this.Excel.SheetBeforeDelete += this.Excel_SheetBeforeDelete;
-			this.Cell.Worksheet.BeforeDelete += this.Worksheet_BeforeDelete;
 		}
 
 		// プロパティ
@@ -33,30 +27,7 @@ namespace VisGeek.Apps.OfficeLineArt.ExcelLineArt {
 
 		public Range Cell { get; }
 
-		// イベントハンドラー
-		private void Excel_SheetBeforeDelete(object Sh) {
-			if ((Worksheet)Sh == this.Cell.Worksheet) {
-				this.Disable();
-			}
-		}
-
-		private void Excel_WorkbookBeforeClose(Workbook Wb, ref bool Cancel) {
-			if (Wb == this.Cell.Worksheet.Parent) {
-				this.Disable();
-			}
-		}
-
-		private void Worksheet_BeforeDelete() {
-			this.Disable();
-		}
-
 		// メソッド
-		protected override void DisposeInternal() {
-			this.Excel.WorkbookBeforeClose -= this.Excel_WorkbookBeforeClose;
-			this.Excel.SheetBeforeDelete -= this.Excel_SheetBeforeDelete;
-			this.Cell.Worksheet.BeforeDelete -= this.Worksheet_BeforeDelete;
-		}
-
 		protected override OfficeLineArt.View.Line CreateLine(LineGroup polygon, Apex begin, Apex end) {
 			return new Line(polygon, begin, end);
 		}

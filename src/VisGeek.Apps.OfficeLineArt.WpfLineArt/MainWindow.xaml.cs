@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +25,7 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 		}
 
 		// フィールド
-		private LineArt lineArt;
+		private CancelableTask task;
 
 		// イベントハンドラー
 		private void Window_Loaded(object sender, RoutedEventArgs e) {
@@ -35,7 +36,6 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 			//polygon.Stroke = Brushes.Black;
 			//polygon.Fill = Brushes.SkyBlue;
 			//this.canvas.Children.Add(polygon);
-			this.lineArt = new LineArt(this, this.canvas);
 		}
 
 		private void Window_KeyDown(object sender, KeyEventArgs e) {
@@ -54,9 +54,24 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 			this.Close();
 		}
 
-		private void StartButton_Click(object sender, RoutedEventArgs e) {
-			Task.Factory.StartNew(() => this.lineArt.Start
-			(3, 6));
+		private async void StartButton_Click(object sender, RoutedEventArgs e) {
+			var lineArt = new LineArt(this, this.canvas);
+
+			using (this.task = new CancelableTask(canceler => lineArt.Start(3, 50, canceler))) {
+				this.startButton.IsEnabled = false;
+				this.stopButton.IsEnabled = true;
+
+				this.task.Start();
+				await this.task;
+
+				this.canvas.Children.OfType<System.Windows.Shapes.Line>().ToList().ForEach(this.canvas.Children.Remove);
+				this.startButton.IsEnabled = true;
+				this.stopButton.IsEnabled = false;
+			}
+		}
+
+		private void StopButton_Click(object sender, RoutedEventArgs e) {
+			this.task?.Cancel();
 		}
 	}
 }

@@ -20,10 +20,6 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 		public Canvas Canvas { get; }
 
 		// メソッド
-		protected override void Sleep(TimeSpan timeSpan) {
-			Thread.Sleep(timeSpan);
-		}
-
 		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
 			return new Field(this, fieldModel, color);
 		}

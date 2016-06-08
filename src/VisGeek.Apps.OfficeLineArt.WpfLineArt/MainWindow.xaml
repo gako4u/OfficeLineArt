@@ -22,7 +22,8 @@
 
 		<!-- ツールバー -->
 		<ToolBar DockPanel.Dock="Top">
-			<Button VerticalAlignment="Bottom" Click="StartButton_Click">Start</Button>
+			<Button Name="startButton" VerticalAlignment="Bottom" Click="StartButton_Click" IsEnabled="True" >Start</Button>
+			<Button Name="stopButton"  VerticalAlignment="Bottom" Click="StopButton_Click"  IsEnabled="False">Stop</Button>
 		</ToolBar>
 
 		<!-- ステータスバー -->

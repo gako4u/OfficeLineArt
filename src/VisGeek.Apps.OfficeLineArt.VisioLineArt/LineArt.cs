@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Visio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,15 +19,12 @@ namespace VisGeek.Apps.OfficeLineArt.VisioLineArt {
 		public Office.Application Application { get; }
 
 		// メソッド
-		protected override void Sleep(TimeSpan timeSpan) {
-			var dateTime = DateTime.Now + timeSpan;
-			while (DateTime.Now < dateTime) {
-				Forms.Application.DoEvents();
-			}
-		}
-
 		protected override View.Field CreateField(Model.Field fieldModel, Color color) {
 			return new Field(this, fieldModel, color);
+		}
+
+		protected override void DoEvents() {
+			Forms.Application.DoEvents();
 		}
 	}
 }
