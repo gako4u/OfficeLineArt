@@ -21,9 +21,37 @@
 		</Menu>
 
 		<!-- ツールバー -->
-		<ToolBar DockPanel.Dock="Top">
+		<ToolBar DockPanel.Dock="Top" HorizontalContentAlignment="Center">
 			<Button Name="startButton" VerticalAlignment="Bottom" Click="StartButton_Click" IsEnabled="True" >Start</Button>
 			<Button Name="stopButton"  VerticalAlignment="Bottom" Click="StopButton_Click"  IsEnabled="False">Stop</Button>
+
+			<TextBlock Text="頂点の数" VerticalAlignment="Center"/>
+			<ComboBox Name="apexCountComboBox" SelectedIndex="0">
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="3" Content="3"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="4" Content="4"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="5" Content="5"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="6" Content="6"/>
+			</ComboBox>
+
+			<TextBlock Text="残像の数" VerticalAlignment="Center"/>
+			<ComboBox Name="afterImageCountComboBox" SelectedIndex="6">
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="0" Content="0"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="1" Content="1"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="2" Content="2"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="3" Content="3"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="4" Content="4"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="5" Content="5"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="6" Content="6"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="7" Content="7"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="8" Content="8"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="9" Content="9"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="10" Content="10"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="20" Content="20"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="30" Content="30"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="50" Content="50"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="100" Content="100"/>
+				<ComboBoxItem HorizontalContentAlignment="Right" DataContext="200" Content="200"/>
+			</ComboBox>
 		</ToolBar>
 
 		<!-- ステータスバー -->
@@ -32,7 +60,6 @@
 			</TextBlock>
 		</StatusBar>
 
-		<Canvas Name="canvas">
-		</Canvas>
+		<Canvas Name="canvas" Background="Black"/>
 	</DockPanel>
 </Window>

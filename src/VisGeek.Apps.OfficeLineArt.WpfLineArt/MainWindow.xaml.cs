@@ -55,11 +55,16 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 		}
 
 		private async void StartButton_Click(object sender, RoutedEventArgs e) {
+			int apexCount = this.GetApexCount();
+			int afterImageCount = this.GetAfterImageCount();
+
 			var lineArt = new LineArt(this, this.canvas);
 
-			using (this.task = new CancelableTask(canceler => lineArt.Start(3, 50, canceler))) {
+			using (this.task = new CancelableTask(canceler => lineArt.Start(apexCount, afterImageCount, canceler))) {
 				this.startButton.IsEnabled = false;
 				this.stopButton.IsEnabled = true;
+				this.apexCountComboBox.IsEnabled = false;
+				this.afterImageCountComboBox.IsEnabled = false;
 
 				this.task.Start();
 				await this.task;
@@ -67,7 +72,23 @@ namespace VisGeek.Apps.OfficeLineArt.WpfLineArt {
 				this.canvas.Children.OfType<System.Windows.Shapes.Line>().ToList().ForEach(this.canvas.Children.Remove);
 				this.startButton.IsEnabled = true;
 				this.stopButton.IsEnabled = false;
+				this.apexCountComboBox.IsEnabled = true;
+				this.afterImageCountComboBox.IsEnabled = true;
 			}
+		}
+
+		private int GetApexCount() {
+			var selected = (ComboBoxItem) this.apexCountComboBox.SelectedItem;
+			var str = (string)selected.DataContext;
+			var result = int.Parse(str);
+			return result;
+		}
+
+		private int GetAfterImageCount() {
+			var selected = (ComboBoxItem)this.afterImageCountComboBox.SelectedItem;
+			var str = (string)selected.DataContext;
+			var result = int.Parse(str);
+			return result;
 		}
 
 		private void StopButton_Click(object sender, RoutedEventArgs e) {
